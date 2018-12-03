@@ -1,6 +1,7 @@
 <?php
+
 	
-$bdd = new PDO("mysql:host=localhost;dbname=webisep",'root','');
+$bdd = new PDO("mysql:host=localhost;dbname=espace_membre",'root','');
 
 	if(isset($_GET['pseudo'], $_GET['key']) AND !empty($_GET['pseudo']) AND !empty($_GET['key']))
 	{

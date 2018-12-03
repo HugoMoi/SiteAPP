@@ -1,6 +1,6 @@
 <?php
 
-$bdd = new PDO("mysql:host=localhost;dbname=webisep",'root','');
+$bdd = new PDO("mysql:host=localhost;dbname=espace_membre",'root','');
 
 if(isset($_POST['forminscription']))
 {
@@ -53,7 +53,7 @@ if(isset($_POST['forminscription']))
 
 
 								$header="MIME-Version: 1.0\r\n";
-								$header.='From:"WebISep"<minhnamnguyenisep@gmail.com>'."\n";
+								$header.='From:"WebISep"<nguyenminhnamisep@gmail.com>'."\n";
 								$header.='Content-Type:text/html; charset="uft-8"'."\n";
 								$header.='Content-Transfer-Encoding: 8bit';
 
@@ -68,7 +68,7 @@ if(isset($_POST['forminscription']))
 								';
 
 								mail($mail, "Confirmation de compte", $message, $header);
-								$erreur = "Votre compte a bien été crée <a href=\"Connexion.php\">Me connecter</a>" ;
+								$erreur = "Votre compte a bien été crée <a href=\"connexion.php\">Me connecter</a>" ;
 							}
 							else
 							{
@@ -118,83 +118,119 @@ if(isset($_POST['forminscription']))
 		<meta charset="utf-8">
 	</head>
 	<body>
-		
-		<?php include("General.php"); ?>
+				<header>
+				<a href="Menu_v2.html"><img src="Logo2.png" alt="logo" id="logo"class="flottant"/></a>
+				<a class="menu-espaceclient" href=connexion.php>Connexion</a>
+				<a class="menu-inscription" href=inscription.php>Inscription</a>
 
-		<div class="tabl">
-			<div align="center">
-				<h2>Inscription</h2>
-				<br /><br /><br />
-				<form method="POST" action="">
-					<table>
-						<tr>
-							<td align="right">
-								<label for ="pseudo">Pseudo: </label>
-							</td>
-							<td>
-								<input type="text" placeholder="Votre pseudo" id="pseudo" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="prenom">Prénom: </label>
-							</td>
-							<td>
-								<input type="text" placeholder="Votre prénom" id="prenom" name="prenom" value="<?php if (isset($prenom)) {echo $prenom;} ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="Nom">Nom: </label>
-							</td>
-							<td>
-								<input type="text" placeholder="Votre nom" id="nom" name="nom" value="<?php if (isset($nom)) {echo $nom;} ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="mail">Mail: </label>
-							</td>
-							<td>
-								<input type="text" placeholder="Votre mail" id="mail" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" />
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="mail2">Confirmation du mail: </label>
-							</td>
-							<td>
-								<input type="email" placeholder="Confirmez adresse mail" id="mail2" name="mail2" value="<?php if (isset($mail2)) {echo $mail2;} ?>"/>
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="mdp">Mot de passe </label>
-							</td>
-							<td>
-								<input type="password" placeholder="Mot de passe" id="mdp" name="mdp"/>
-							</td>
-						</tr>
-						<tr>
-							<td align="right">
-								<label for ="mdp2">Confirmation du mot de passe </label>
-							</td>
-							<td>
-								<input type="password" placeholder="Confirmez mot de passe" id="mdp2" name="mdp2"/>
-							</td>
-						</tr>
-					</table>
-					<br />
-					<input type="submit" name="forminscription" value="Je m'inscris" />
-				</form>
-				<?php
-					if(isset(($erreur)))
-					{
-						echo '<font color = "red">'.$erreur."</font>";
-					}
+				<div class="menu">
+					<a class="menu-expertise" href="#">Expertise </a>
+					<a class="menu-AproposDeNous" href="#">A propos de nous </a>
+					<a class="menu-FAQ" href="#">FAQ </a>		
+					<a class="menu-Forum" href="#">Forum</a>
+					<a class="menu-NousContacter" href="#">Nous contacter </a>
+				</div>
 
-				?>
-			</div>
+		</header>
+		<div id="mySidepanel" class="sidepanel">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="#">Profil</a>
+  <a href="#">Maison</a>
+  <a href="#">Statistiques</a>
+  <a href="#">Paramètres</a>
+  <a href="#">Aide</a>
+</div>
+
+<button class="openbtn" onclick="openNav()">☰ Menu</button>  
+
+<script>
+function openNav() {
+    document.getElementById("mySidepanel").style.width = "200px";
+}
+
+function closeNav() {
+    document.getElementById("mySidepanel").style.width = "0";
+}
+</script>
+<div class="tabl">
+		<div align="center">
+			<h2>Inscription</h2>
+			<br /><br /><br />
+			<form method="POST" action="">
+				<table>
+					
+					<tr>
+						<td align="right">
+							<label for ="pseudo">Pseudo: </label>
+						</td>
+						<td>
+							<input type="text" placeholder="Votre pseudo" id="pseudo" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" />
+						</td>
+					</tr>
+
+					<tr>
+						<td align="right">
+							<label for ="prenom">Prénom: </label>
+						</td>
+						<td>
+							<input type="text" placeholder="Votre prénom" id="prenom" name="prenom" value="<?php if (isset($prenom)) {echo $prenom;} ?>" />
+						</td>
+					</tr>
+
+					<tr>
+						<td align="right">
+							<label for ="Nom">Nom: </label>
+						</td>
+						<td>
+							<input type="text" placeholder="Votre nom" id="nom" name="nom" value="<?php if (isset($nom)) {echo $nom;} ?>" />
+						</td>
+					</tr>
+
+
+					<tr>
+						<td align="right">
+							<label for ="mail">Mail: </label>
+						</td>
+						<td>
+							<input type="text" placeholder="Votre mail" id="mail" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<label for ="mail2">Confirmation du mail: </label>
+						</td>
+						<td>
+							<input type="email" placeholder="Confirmez votre adresse mail" id="mail2" name="mail2" value="<?php if (isset($mail2)) {echo $mail2;} ?>"/>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<label for ="mdp">Mot de passe </label>
+						</td>
+						<td>
+							<input type="password" placeholder="mot de passe" id="mdp" name="mdp"/>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<label for ="mdp2">Confirmation du mot de passe </label>
+						</td>
+						<td>
+							<input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2"/>
+						</td>
+					</tr>
+			</table>
+			<br />
+			<input type="submit" name="forminscription" value="Je m'inscris" />
+		</form>
+		<?php
+		if(isset(($erreur)))
+		{
+			echo '<font color = "red">'.$erreur."</font>";
+		}
+
+		?>
 		</div>
+	</div>
 	</body>
 </html>

@@ -1,0 +1,151 @@
+body{
+	font-family: 'Source code pro', Calibri, serif;
+	margin: 0px;
+	padding:0px;
+	
+}
+
+img{
+	width: 10%;
+	height: auto;
+}
+
+nav >ul{
+	margin: 0px;
+	padding: 0px;
+}
+
+.onglet { /*enlever les puces devant les éléments*/
+	list-style-type: none;
+}
+
+nav{
+	width: 100%;/*le menu prend toute la place*/
+	border-bottom: black 1px solid;
+	background-color: grey;
+	height: 30px;
+}
+
+nav> ul> li{
+	float: right; /*aligner les onglets*/
+	position: relative;
+}
+nav> ul::after{
+	content:"";
+	display: block;
+}
+nav a{/*enlever le soulignement des liens*/
+	display: inline-block;
+	text-decoration: none;
+
+}
+nav> ul> li> a{/*marges de chaque onglet*/
+	padding: 5px 30px;
+	padding-left: 10px;
+	color: white;
+}
+.onglet:hover a{
+	color: #e4e4e6;
+}
+.submenu{
+	list-style-type: none;/*enlever les puces dans le sous menu*/
+	display: none;
+	margin-top: 0px;
+}
+.submenu a{/*gérer marge padding taille couleur largueur...*/
+	padding: 10px 30px;
+	font-size: 18px;
+	color: white;
+	width: 90px;
+	background-color:black; 
+}
+
+.onglet:hover .submenu{
+	display: inline-block;
+	position: absolute;
+	top: 100%;/*faire afficher le sous menu au bon niveau*/
+	left: 0px;/*afficher le sous menu au bon endroit(vertical)*/
+	padding:0px;
+	z-index: 100000;
+}
+.submenu a:hover{
+	background-color: #424458;/*hover pour changer la couleur des onglets du sous menu*/
+}
+
+.menu-espaceclient, .menu-inscription{
+	border:2px solid black;
+	border-radius: 20px;
+	text-decoration: none;
+	margin: 10px;
+	margin-top: 20px;
+	padding: 2px 7px;
+	position:relative;
+	float: right;
+	color: white;
+	background-color: black;
+}
+
+.menu-inscription:hover{
+	background-color: #424558;
+	border:2px solid #424558;
+
+}
+
+.menu-espaceclient:hover{
+	background-color: #424558;
+	border:2px solid #424558;
+
+}
+
+header{
+	background-color: grey;
+	}
+
+
+/*responsive*/
+@media only screen and (max-width:1100px){
+	.onglet a{
+		margin-right: 2px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.submenu a{
+		width: 100px;
+	}
+
+	img{
+		width: 13%;
+		height: auto;
+	}
+
+}
+
+@media only screen and (max-width:750px){
+	.menu-espaceclient, .menu-inscription{
+			font-size: 12px;
+			margin-top: 10px;
+			margin-left: 0px;
+	}
+	.onglet a{
+		width: 50%;
+		padding-left: 2px;
+		padding-right: 2px;
+		border-bottom: black solid 1px;
+	}
+
+	nav> ul> li{
+		float: none;
+		background-color: grey;
+		text-align: center;
+	}
+	nav{}
+
+	img{
+		width: 25%;
+		height: auto;
+	}
+	.submenu{
+		width: 100%;
+	}
+
+}

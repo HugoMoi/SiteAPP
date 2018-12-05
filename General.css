@@ -44,10 +44,13 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	padding-left: 10px;
 	color: white;
 }
-.onglet:hover a{
-	color: #c6c6cb;
-}
 
+.onglet:hover a{ /*onglet en rouge quand on passe dessus*/
+	color: red;
+}
+.onglet:hover div a{/*laisser le sous menu en blanc*/
+	color: white;
+}
 .submenu{
 	list-style-type: none;/*enlever les puces dans le sous menu*/
 	display: none;
@@ -56,7 +59,6 @@ nav> ul> li> a{/*marges de chaque onglet*/
 .submenu a{/*gérer marge padding taille couleur largueur...*/
 	padding: 10px 30px;
 	font-size: 18px;
-	color: white;
 	width: 90px;
 	background-color:black;
 }
@@ -68,7 +70,9 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	left: 0px;/*afficher le sous menu au bon endroit(vertical)*/
 	padding:0px;
 	z-index: 100000;
+	color: white;
 }
+
 .submenu a:hover{
 	background-color: #424458;/*hover pour changer la couleur des onglets du sous menu*/
 }
@@ -138,7 +142,7 @@ header{
 		text-align: center;
 	}
 	nav{
-	color:#424458;
+		color: #424458;
 	}
 
 	img{
@@ -149,4 +153,3 @@ header{
 		width: 100%;
 	}
 
-}

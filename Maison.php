@@ -23,47 +23,58 @@
 			<?php 
 			while ($room = $inforoom->fetch()) 	
 			{ 
-				$id= $room['RoomID'];
+				$idr= $room['RoomID'];
 			?>
 			<div id="box">
-				<input type="checkbox" id="<?php echo $id; ?>">
+				<input type="checkbox" id="<?php echo $idr; ?>">
 				<div id="top">
 					<div id="pièce"><?php echo $room['RoomName']; ?></div>
 					<div id="info">
 						<div id="temp"><?php if(isset(($room['RoomTemp']))) { echo $room['RoomTemp'].'°C'; }?></div>
 						<div id="light"><img src="#"></div>
 						
-						<label for="<?php echo $id; ?>"></label>
+						<label for="<?php echo $idr; ?>"></label>
 					</div>
 				</div>
 				<div id="bot">
 					<div id="control">
 						<?php 
 						$infolamp = $bdd->prepare('SELECT * FROM lamp WHERE RoomID=?');
-						$infolamp->execute(array($id));
+						$infolamp->execute(array($idr));
 						while ($lamp = $infolamp->fetch()) 
 						{ 
+							$idl = $lamp['LampID'];
+							$statel = $lamp['LampCondition'];
 						?>
 						<div>
 							<p><?php echo $lamp['LampName']; ?></p>
 							<label class="switch">
-  								<input type="checkbox">
-  								<span class="slider round"></span>
+								<a href="Action.php?idl=<?= $idl ?>">
+									<input type="checkbox" name="switch" value="1"
+										<?php if($statel == true) {echo 'checked';}?> >
+									  <span class="slider lamp"></span>
+								</a>
   							</label>
   						</div>
   						<?php
 						}
 						$infolamp->closeCursor();
 						$infowindow = $bdd->prepare('SELECT * FROM window WHERE RoomID=?');
-						$infowindow->execute(array($id));
+						$infowindow->execute(array($idr));
 						while ($window = $infowindow->fetch()) 
 						{ 
+							$idw = $window['WindowID'];
+							$statew = $window['WindowCondition'];
+
 						?>
   						<div>
 							<p><?php echo $window['WindowName']; ?></p>
 							<label class="switch">
-  								<input type="checkbox">
-  								<span class="slider round"></span>
+								<a href="Action.php?idw=<?= $idw ?>">
+									<input type="checkbox" name="switch" value="1"
+										<?php if($statew == true) {echo 'checked';}?> >
+									<span class="slider window"></span>
+								</a>
   							</label>
   						</div>
   						<?php

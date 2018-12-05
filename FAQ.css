@@ -3,23 +3,22 @@ h1, h2{
         color: #424458;
 
 }
-/* Espacement entre les questions */
 
-/* Masquer les checkbox et les paragraphes */
-.section input,
-.section p{
-        display: none;
+.question input, /* Masquer les checkbox et les paragraphes */
+
+.question p{
+        display: none; /*masquer les réponse*/
 }
 
-/* Si le checkbox est coché, montrer le paragraphe, c'est avec le checkbox qu'on sait quel réponse dérouler*/
-.section input[type=checkbox]:checked~p{
+/* Si le checkbox est coché, montrer le paragraphe, c'est avec le checkbox qu'on sait quelle réponse dérouler*/
+.question input[type=checkbox]:checked~p{
         display: block;
         color: black;
         font-size: 1em;
 }
 
-/* Style des labels */
-.section label{
+/* Style des labels ( les questions) */
+.question label{
         margin-left: 15%;
         margin-right: 15%;
         background: #eee;
@@ -29,21 +28,18 @@ h1, h2{
         font-weight: bold;
         border: 1px solid #ddd;
         border-left: 3px solid #888;
-        text-shadow: 0 1px 0 rgba(255,255,255,.5);
-
 }
 
-
 /* Style du label si le checkbox est coché */
-.section input[type=checkbox]:checked~label{
+.question input[type=checkbox]:checked~label{
+        color: white;
         border-color: #505cd5;
         background: #90b0f8;
-        background-image: linear-gradient(to bottom, #fff, #5b7db7); /*effet dégradé*/
-        box-shadow: 0 0 1px rgba(0,0,0,.4);
+        background-image: linear-gradient(to bottom, #424458, #5b7db7); /*effet dégradé*/
 }
 
 /*gérer la flèche*/
-.section label::before{ /*syntaxe pour metre une flèche*/
+.question label::before{ /*syntaxe pour mettre une flèche*/
         content: '';
         position: absolute;
         right: 4px;/*flèche à droite*/
@@ -54,15 +50,20 @@ h1, h2{
 }
 
 /* gérer flèche quand la Q est sélectionnée */
-.section input[type=checkbox]:checked~label::before{
+.question input[type=checkbox]:checked~label::before{
         border: 6px solid transparent;
-        border-top-color: inherit;
+        border-top-color: white;
         margin-top: -3px;
         right: 10px;
 }
 
 p{
-margin-left: 20%;
+margin-left: 18%;
+margin-right: 18%;
 }
 
-
+footer{
+        margin-bottom: 10px; 
+        margin-top: 23%;
+        text-align: center;
+}

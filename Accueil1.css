@@ -7,7 +7,7 @@
     background-attachment:fixed;
 }
 .tire{/*h1 du bandeau*/
-	color: black;
+	color: white;
 	text-align: center;
 	margin-top:0px;
 	padding-top: 20px;
@@ -15,7 +15,7 @@
 
 }
 .secondTitre{ /*h2 du bandeau*/
-		color: black;
+		color: white;
 	text-align: center;
 	margin-top:0px;
 	padding-top: 20px;

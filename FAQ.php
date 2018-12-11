@@ -1,19 +1,18 @@
+<?php include 'Accueil.php'?>
 <?php 
-$bdd = new PDO("mysql:host=localhost;dbname=faq",'root','');
+$bdd = new PDO("mysql:host=localhost;dbname=espace_membre",'root','');
 $messages = $bdd->query('SELECT * FROM post');?>
 
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>FAQ</title>
      <meta charset="utf-8">
-    <link rel="stylesheet" href="../Style/FAQ.css" />
-    <link rel="stylesheet" href="../Style/General.css" />
+    <link rel="stylesheet" href="FAQ.css" />
+    <link rel="stylesheet" href="General.css" />
 
 </head>
 <body>
-
-<?php include("General.php") ?>
 
 
 <h1>FAQ</h1>

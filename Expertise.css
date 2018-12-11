@@ -1,0 +1,39 @@
+div{
+	height: 460px;
+	width: 100%;
+	background-color: #424458;	
+}
+
+body{
+	margin:0;
+}
+h1{/*h1 du bandeau*/
+	color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	font-size: 6em;
+
+}
+
+
+p{
+	color: white;
+	text-align: center;
+	margin:20px 200px;
+	font-size: 1.5em;
+
+}
+.fond{ /*bandeau avec l'image*/
+	width: 100%;
+	height: 400px;
+    background-image:url(Photo_Expertise.png);
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+}
+
+h2{
+	text-align: center;
+	font-size: 2em;
+}

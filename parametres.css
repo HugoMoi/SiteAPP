@@ -1,14 +1,11 @@
-﻿body{
+body{
 	font-family: 'Source code pro', Calibri, serif;
 	margin: 0px;
-	padding:0px;
-	
+	padding: 0px;
 }
 
 img{
 	width: 10%;
-	margin-right: 0px;
-	margin-top: 0px;
 	height: auto;
 }
 
@@ -74,7 +71,7 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	background-color: #424458;/*hover pour changer la couleur des onglets du sous menu*/
 }
 
-.menu-espaceclient, .menu-inscription, .salut {
+.menu-espaceclient, .menu-inscription{
 	border:2px solid black;
 	border-radius: 20px;
 	text-decoration: none;
@@ -98,8 +95,6 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	border:2px solid #424558;
 
 }
-
-
 
 header{
 	background-color: grey;

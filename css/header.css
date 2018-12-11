@@ -1,14 +1,11 @@
-﻿body{
-	font-family: 'Source code pro', Calibri, serif;
-	margin: 0px;
-	padding:0px;
-	
+th {
+	background-color:#eaeaea;
 }
+
+
 
 img{
 	width: 10%;
-	margin-right: 0px;
-	margin-top: 0px;
 	height: auto;
 }
 
@@ -74,7 +71,7 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	background-color: #424458;/*hover pour changer la couleur des onglets du sous menu*/
 }
 
-.menu-espaceclient, .menu-inscription, .salut {
+.menu-espaceclient, .menu-inscription{
 	border:2px solid black;
 	border-radius: 20px;
 	text-decoration: none;
@@ -98,8 +95,6 @@ nav> ul> li> a{/*marges de chaque onglet*/
 	border:2px solid #424558;
 
 }
-
-
 
 header{
 	background-color: grey;
@@ -142,7 +137,7 @@ header{
 		background-color: grey;
 		text-align: center;
 	}
-	nav{}
+	
 
 	img{
 		width: 25%;
@@ -152,4 +147,98 @@ header{
 		width: 100%;
 	}
 
+}
+#banniere
+{
+width: 600px;
+height: 150px;
+background-position:  center;
+margin-bottom: 20px; 
+background-image: url('images/banniere.jpg');
+}
+
+#corps_forum
+{
+border: 1px solid black;
+width: 90%;
+margin-top: 50px;
+margin-left: 5%;
+margin-bottom: 10Opx;
+padding: 5px;
+background-color: rgb(237,224,213);
+}
+
+#footer
+{
+border: 1px solid black;
+width: 90%;
+margin-top: 50px;
+margin-left: 5%;
+margin-bottom: 10Opx;
+padding: 5px;
+background-color: rgb(237,224,213);
+}
+
+.ico {width:2%}
+.titre { width:61%; }
+.nombremessages { width:2%; }
+.nombrevu { width:4%; }
+.nombresujets { width:2%; }
+.auteur { width:7%; }
+.derniermessage { width:18%; }
+.categorie { width:92%; background-color : rgb(244,238,250); }
+
+td {  border: 1px solid #424558;
+ background-color: rgb(188, 188, 188);
+  vertical-align:top; 
+}
+table { background-color: #a4a1a1; 
+	border: 1px solid
+	 }
+
+
+.vt_auteur
+{
+width:20%;
+background-color : rgb(244,238,250);
+}
+.vt_mess
+{
+width:75%;
+background-color : rgb(244,238,250);
+}
+
+
+#quote
+{
+width: 100%;
+background-color : rgb(220,220,220);
+margin-top: 2px;
+margin-bottom: 2px;
+font-family: "Comic sans MS", Arial, Verdana, serif;
+}
+
+
+.button_supprimer:hover{
+	color: blue;
+}
+.button1{
+	text-decoration: none;
+}
+
+
+
+.button {
+	text-decoration: none;
+}
+
+
+
+h1{
+	text-align: center;
+	color: black;
+}
+
+body{
+	background-image: url(img/image_tech.jpg);
 }

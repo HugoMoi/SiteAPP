@@ -1,0 +1,104 @@
+body{
+	font-family: 'Source code pro', Calibri, serif;
+	margin: 0px;
+	padding:0px;
+}
+
+header{
+	background-color: grey;
+	}
+
+.tabl{
+    border : 1px solid black;
+}
+
+
+
+header div a{
+	text-decoration: none;
+	color: white;
+	margin: 10px;
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+.menu{
+	margin: 8px;
+	margin-top: 28px;
+	padding: 10px 7px 10px 7px;
+	float: right;
+	background-color: grey;
+}
+.menu a:hover {
+	color: #cec9c9;
+}
+
+.menu-espaceclient, .menu-inscription{
+
+	text-decoration: none;
+	margin: 8px;
+	margin-top: 28px;
+	padding: 10px 7px 10px 7px;
+	position:relative;
+	float: right;
+	color: white;
+	background-color: black;
+	font-size: 20px;
+
+}
+
+.menu-inscription:hover, .menu-espaceclient:hover{
+
+	background-color: #313237;
+
+}
+
+
+
+
+/*Menu déroulant*/
+.sidepanel  {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 250px; /* hauteur du sous menu*/
+    left: 0px;
+    background-color: #111;
+    overflow-x: hidden; /*cacher le sous menu*/
+    transition: 0.3s;
+    padding-top: 25px;
+}
+
+.sidepanel a {
+    padding: 8px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidepanel a:hover {
+    color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color:#444;
+}
+

@@ -1,21 +1,18 @@
 <?php include 'General.php' ?>
 <?php
+
 session_start();
 $bdd = new PDO("mysql:host=localhost;dbname=espace_membre",'root','');
 
-if(isset($_GET['admin']) AND $_GET['admin']==0)
-{
-	exit();
-}
 
 if(isset($_GET['id']) AND $_GET['id']>0)
-{
-	$getid = intval($_GET['id']);
-	$requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
-	$requser->execute(array($getid));
-	$userinfo = $requser->fetch();
+	{
+		$getid = intval($_GET['id']);
+		$requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
+		$requser->execute(array($getid));
+		$userinfo = $requser->fetch();
+	}
 
-}
 
 if(isset($_GET['confirme']) AND !empty($_GET['confirme']))
 {
@@ -48,10 +45,18 @@ $membres = $bdd->query('SELECT * FROM membres');
 			<h2>Administrateur</h2>
 			<ul>
 
+		<?php		
+		if(isset($_SESSION['id']) AND $userinfo['id']==$_SESSION['id'])
+		{
+			?>
 			<?php while($m = $membres->fetch()) { ?>
-			<li><?= $m['id'] ?> : <?= $m['pseudo'] ?><?php if ($m['confirme'] == 0) { ?> - <a href="Administration.php?confirme=<?= $m['id']?>">Confirmer </a> <?php } ?>
-			- <a href="Administration.php?delete=<?= $m['id']?>">Supprimer </a></li>
+			<li><?= $m['id'] ?> : <?= $m['pseudo'] ?><?php if ($m['confirme'] == 0) { ?> - <a href="Administration.php?id=<?=$userinfo['id']?>&confirme=<?= $m['id']?>">Confirmer </a> <?php } ?>
+			- <a href="Administration.php?id=<?=$userinfo['id']?>&delete=<?= $m['id']?>">Supprimer </a></li>
 			<?php } ?>
+			<?php
+		}
+		?>
+			
 
 
 			</ul>

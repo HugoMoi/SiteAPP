@@ -1,3 +1,4 @@
+<?php include 'Accueil.php'?>
 <?php
 
 $bdd = new PDO("mysql:host=localhost;dbname=espace_membre",'root','');
@@ -114,44 +115,9 @@ if(isset($_POST['forminscription']))
 <html>
 	<head>
 		<title>Inscription</title>
-		<link rel="stylesheet" href="Menu.css" />
 		<meta charset="utf-8">
 	</head>
 	<body>
-				<header>
-				<a href="Menu_v2.html"><img src="Logo2.png" alt="logo" id="logo"class="flottant"/></a>
-				<a class="menu-espaceclient" href=connexion.php>Connexion</a>
-				<a class="menu-inscription" href=inscription.php>Inscription</a>
-
-				<div class="menu">
-					<a class="menu-expertise" href="#">Expertise </a>
-					<a class="menu-AproposDeNous" href="#">A propos de nous </a>
-					<a class="menu-FAQ" href="#">FAQ </a>		
-					<a class="menu-Forum" href="#">Forum</a>
-					<a class="menu-NousContacter" href="#">Nous contacter </a>
-				</div>
-
-		</header>
-		<div id="mySidepanel" class="sidepanel">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#">Profil</a>
-  <a href="#">Maison</a>
-  <a href="#">Statistiques</a>
-  <a href="#">Paramètres</a>
-  <a href="#">Aide</a>
-</div>
-
-<button class="openbtn" onclick="openNav()">☰ Menu</button>  
-
-<script>
-function openNav() {
-    document.getElementById("mySidepanel").style.width = "200px";
-}
-
-function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-}
-</script>
 <div class="tabl">
 		<div align="center">
 			<h2>Inscription</h2>

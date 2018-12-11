@@ -1,3 +1,4 @@
+<?php include 'Accueil.php' ?>
 <?php
 session_start();
 
@@ -16,17 +17,21 @@ if(isset($_POST['formconnexion']))
 		if($userexist==1)
 		{
 			$userinfo = $requser->fetch();
-			if($userinfo['confirme']==1 AND $userinfo['admin']==0)
+			if($userinfo['confirme']==1)
 			{
+				if($userinfo['admin']==0)
+				{
+					$_SESSION['id'] = $userinfo['id'];
+					$_SESSION['pseudo'] = $userinfo['pseudo'];
+					$_SESSION['mail'] = $userinfo['mail'];
+					header("Location: Homec.php?id=".$_SESSION['id']);
+				}
+				else
+				{
+					$_SESSION['id'] = $userinfo['id'];
+					header("Location: Administration.php?id=".$_SESSION['id']);
+				}
 				
-				$_SESSION['id'] = $userinfo['id'];
-				$_SESSION['pseudo'] = $userinfo['pseudo'];
-				$_SESSION['mail'] = $userinfo['mail'];
-				header("Location: profil.php?id=".$_SESSION['id']);
-			}
-			elseif ($userinfo['confirme']==1 AND $userinfo['admin']==1)
-			{
-				header("Location: Administration.php");
 			}
 			else
 			{
@@ -45,47 +50,12 @@ if(isset($_POST['formconnexion']))
 }
 
 ?>
+
 <html>
 	<head>
-		<title>Connexion</title>
-		<link rel="stylesheet" href="Menu.css" />
+		<title>General</title>
+		<link rel="stylesheet" href="General.css" />
 		<meta charset="utf-8">
-	</head>
-	<body>
-		<header>
-				<a href="Menu_v2.html"><img src="Logo2.png" alt="logo" id="logo"class="flottant"/></a>
-				<a class="menu-espaceclient" href=connexion.php>Connexion</a>
-				<a class="menu-inscription" href=inscription.php>Inscription</a>
-
-				<div class="menu">
-					<a class="menu-expertise" href="#">Expertise </a>
-					<a class="menu-AproposDeNous" href="#">A propos de nous </a>
-					<a class="menu-FAQ" href="#">FAQ </a>		
-					<a class="menu-Forum" href="#">Forum</a>
-					<a class="menu-NousContacter" href="#">Nous contacter </a>
-				</div>
-
-		</header>
-		<div id="mySidepanel" class="sidepanel">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="#">Profil</a>
-  <a href="#">Maison</a>
-  <a href="#">Statistiques</a>
-  <a href="#">Paramètres</a>
-  <a href="#">Aide</a>
-</div>
-
-<button class="openbtn" onclick="openNav()">☰ Menu</button>  
-
-<script>
-function openNav() {
-    document.getElementById("mySidepanel").style.width = "200px";
-}
-
-function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
-}
-</script>
 		<div align="center">
 			<h2>Connexion</h2>
 			<br /><br /><br />

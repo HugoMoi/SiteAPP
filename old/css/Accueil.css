@@ -1,0 +1,29 @@
+.presentation{ /*bandeau avec l'image*/
+	width: 100%;
+	height: 550px;
+    background-image:url(../Image/photoAccueil.jpg);
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+}
+.tire{/*h1 du bandeau*/
+	color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	font-size: 6em;
+
+}
+.secondTitre{ /*h2 du bandeau*/
+		color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	font-size: 3em;
+}
+.Apropos h1{
+	text-align: center;
+	font-size: 4em;
+	color: black;
+}
+

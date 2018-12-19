@@ -41,4 +41,19 @@ function actionWindow() {
  	} 
 }
 
+function addRoom() {
+    if (isset($_POST['roomName'])) {
+        insertRoom();
+        header('Location: index.php?action=maison');
+    }
+    include "views/addRoom.php";
+}
+
+function updateRoom() {
+    if(isset($_GET['idr']) AND !empty($_GET['idr'])) {
+
+    }
+    include "views/updateRoom.php";
+}
+
 ?>

@@ -69,11 +69,18 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
   						</div>
 
   						<?php } ?>
-
+					</div>
+					<div id="options">
+						<div id="parameters">
+							<a href="index.php?action=updateRoom&idr=<?= $idr ?>">op</a>
+						</div>
 					</div>
 				</div>	
 			</div>
 			<?php } ?>
+			<div id="addRoom">
+  				<a href="index.php?action=addRoom" id="add"></a>
+  			</div>
 		</div>
 	</body>
 </html>

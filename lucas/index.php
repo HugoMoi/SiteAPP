@@ -19,6 +19,13 @@ if(isset($_GET["action"]) && !empty($_GET['action'])){
       		break;
         case 'vertical':
             vertical();
+            break;
+        case 'addRoom':
+            addRoom();
+            break;
+        case 'updateRoom':
+            updateRoom();
+            break;
     }
 } else {
     general();

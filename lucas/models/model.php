@@ -57,3 +57,36 @@ function onw(int $getidw) {
     $onw->execute(array($getidw));
     return $onw;
 }
+
+function insertRoom() {
+    $bdd = bdd();
+    $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTemp`) VALUES (:RoomName,:RoomTemp)");
+    $roomTemp = 0;
+    if (empty($_POST['roomTemp'])) {
+    	$roomTemp = NULL;
+    }
+    $req->execute(['RoomName' => $_POST['roomName'],'RoomTemp'=>$roomTemp]);
+    
+    $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName");
+	$reqId->execute(['RoomName' => $_POST['roomName']]);		
+	$roomId= $reqId->fetch();
+
+	$nbLamp = $_POST['nbLamp'];
+    for ($i=0;$i<$nbLamp;$i++) {
+		$reqLamp = $bdd->prepare("INSERT INTO `lamp`(`LampName`, `RoomID`) VALUES (:LampName,:RoomID)");
+		$windowName = $_POST['nbLamp'.$i];
+		$reqLamp->execute(['LampName'=> $windowName,'RoomID' => $roomId['RoomID']]);
+    }
+	$nbWindow = $_POST['nbWindow'];
+    for ($i=0;$i<$nbWindow;$i++) {
+		$reqWindow = $bdd->prepare("INSERT INTO `window`(`WindowName`, `RoomID`) VALUES (:WindowName,:RoomID)");
+		$windowName = $_POST['nbWindow'.$i];
+		$reqWindow->execute(['WindowName'=> $windowName,'RoomID' => $roomId['RoomID']]);
+    }
+    $nbCaptor = $_POST['nbCaptor'];
+    for ($i=0;$i<$nbCaptor;$i++) {
+		$reqCaptor = $bdd->prepare("INSERT INTO `captor`(`CaptorName`, `RoomID`) VALUES (:CaptorName,:RoomID)");
+		$CaptorName = $_POST['nbCaptor'.$i];
+		$reqCaptor->execute(['CaptorName'=> $CaptorName,'RoomID' => $roomId['RoomID']]);
+    } 
+}

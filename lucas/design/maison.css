@@ -11,6 +11,20 @@
   position: relative;
 	width: calc(25% - 22px);
 }
+#addRoom {
+  display: inline-grid;
+  margin: 9px;
+  position: relative;
+  width: 50px;
+}
+#add {
+  height:50px;
+  width: calc(100% - 2px);  
+  /*border: 1px solid black;*/
+  box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  position: relative;
+}
+
 #top {
   height:50px;
 	width: calc(100% - 2px);	
@@ -47,7 +61,7 @@
   display: none;
 } 
 #bot {
-  display: none;
+  /*display: none;*/
 } 
 #box input[type=checkbox]:checked~#bot {
         display: block;
@@ -77,8 +91,8 @@
 }
 #control {
 	/*border: 1px solid black;*/
-	display: block;
-	width: 100%;
+	display: inline-grid;
+	width: 80%;
 	padding-top: 5px;
 	height: calc(100% - 38px);
 }
@@ -95,7 +109,13 @@
 	padding-top: 1px;
 	padding-left: 20%;
 }
-
+#options {
+  display: inline-grid;
+  width: 10%;
+}
+#options div {
+  position: relative;
+}
 .switch {
   position: absolute;
   display: block;

@@ -90,3 +90,91 @@ function insertRoom() {
 		$reqCaptor->execute(['CaptorName'=> $CaptorName,'RoomID' => $roomId['RoomID']]);
     } 
 }
+/*fonction pour forum.php*/
+function affichForum(){
+	$bdd=bdd();
+	$reqcategories=$bdd -> query('SELECT* FROM categorie ');
+	
+	return $reqcategories;
+}
+function affichNbTopic($num){
+	$bdd=bdd();
+	$reqNbmessage=$bdd ->prepare("SELECT COUNT(titre) FROM topic WHERE id_categorie=?");
+	$reqNbmessage->execute(array($num));
+	$nbmessage=$reqNbmessage ->fetch();
+	return $nbmessage;
+}
+
+
+
+/*fonction pour categorie.php*/
+function affichCategorie($selection){
+	$bdd=bdd();
+	$request=$bdd-> query("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection'");
+	return $request;
+}
+
+/*fonctionne aussi dans le topic.php*/
+function nbrMessage($num){
+
+	$bdd=bdd();
+	/*compter le nbre de message par categorie*/
+	$reqNbmessage=$bdd ->prepare("SELECT COUNT(reponse) FROM message WHERE id_topic=?");
+	$reqNbmessage->execute(array($num));
+	$nbmessage=$reqNbmessage ->fetch();
+	return $nbmessage;
+}
+
+function addTopic($selection,$titre,$pseudo,$date,$question){
+	$bdd=bdd();
+	$request2=$bdd-> query("SELECT* FROM categorie WHERE categorie.nom='$selection'");
+	$liste=$request2->fetch();
+	$idTopic=$liste['id']; /*pour l'id de la catégorie.*/
+
+	$reqPublier = $bdd->prepare('INSERT INTO topic(titre,author,date_topic,id_categorie,Question)  VALUES(?,?,?,"'.$idTopic.'",?)');
+    $reqPublier->execute(array($titre,$pseudo,$date,$question));
+}
+
+
+
+/*partie topic.php*/
+function affichQuestion($selection,$numtopic){
+	$bdd=bdd();
+	$request=$bdd-> query("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection' AND topic.id_topic='$numtopic'");
+	return $request;
+
+}
+
+function affichReponse($numtopic){
+	$bdd=bdd();
+	$reqReponse=$bdd -> query("SELECT * FROM message JOIN topic ON message.id_topic=topic.id_topic WHERE topic.id_topic='$numtopic' ORDER BY message.date_message");
+	return $reqReponse;
+
+}
+function addPost($id,$reponse,$pseudo,$date){
+     $bdd=bdd();
+    $reqPublier = $bdd->prepare('INSERT INTO message(reponse,pseudo,id_topic,date_message)  VALUES(?,?,"'.$id.'",?)');
+    $reqPublier->execute(array($reponse,$pseudo,$date));
+        }
+
+/*Page Expertise*/
+function catalogue(){    
+     $bdd=bdd();
+    $messages = $bdd->prepare('SELECT * FROM catalogue');
+    $messages->execute(array());
+    return $messages;
+    } 
+
+function affichFAQ(){
+     $bdd=bdd();
+	$reqFAQ = $bdd->query('SELECT * FROM post');
+	return $reqFAQ;
+}
+
+function addQuestion($question,$reponse){
+     $bdd=bdd();
+    $reqPublier = $bdd->prepare('INSERT INTO post(Question,Reponse)  VALUES(?,?)');
+    $reqPublier->execute(array($question,$reponse));
+    return $reqPublier;
+    }
+?>

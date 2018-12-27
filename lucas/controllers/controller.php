@@ -55,5 +55,90 @@ function updateRoom() {
     }
     include "views/updateRoom.php";
 }
+/*Forum*/
+function forum() {
+	$reqcategories= affichForum();
+/*	$nbmessage=affichNbTopic($num);
+*/    include "views/forum.php";
+}
+function categorie(){
+
+	$selection =$_GET['var'];
+	$request=affichCategorie($selection);
+   	if (isset($_POST['publier']))
+        {  
+       	session_start();
+        date_default_timezone_set( 'Europe/Paris' );
+        $titre=$_POST['titre'];
+    	$question=$_POST['Question'];
+   		$pseudo=$_SESSION['pseudo'];
+   		$date=date("Y-m-d H:i:s");
+		addTopic($selection,$titre,$pseudo,$date,$question);
+		$url="index.php?action=categorie&var=".$selection;
+		header("Location:".$url);
+	}else{
+		// nothing to do: pas de nouveau topic
+	}
+
+		include "views/categorie.php";
+}
+
+function topic(){
+	$selection =$_GET['var'];
+	$numtopic=$_GET['numtopic'];
+	$request=affichQuestion($selection,$numtopic);
+	$reqReponse=affichReponse($numtopic);
+
+
+
+        if (isset($_POST['publier']))
+ 		{  
+ 			session_start();
+ 			date_default_timezone_set( 'Europe/Paris' );
+ 			$reponse=$_POST['reponse'];
+        	$pseudo=$_SESSION['pseudo'];
+        	$date=date("Y-m-d H:i:s");
+        	addPost($numtopic,$reponse,$pseudo,$date);
+
+		/*redirection*/
+ 		$url="index.php?action=topic&var=".$selection."&numtopic=".$numtopic;
+		header("Location:".$url);
+}
+	include"views/topic.php";
+}
+
+/*Accueil*/
+function accueil(){
+	include 'views/Accueil.php';
+}
+
+/*Expertise*/
+function expertise(){
+	$messages=catalogue();
+	include 'views/Expertise.php';
+}
+
+/*FAQ*/
+function FAQ(){
+	$reqFAQ=affichFAQ();
+	 if (isset($_POST['publier']))
+        {
+            $question=$_POST['question'];
+            $reponse=$_POST['reponse'];
+            $reqPublier=addQuestion($question,$reponse);
+            header("Location:index.php?action=FAQ");
+
+        }
+        else{
+        	/*nothing to do : pas de nouvelle question*/
+        }
+	include 'views/FAQ.php';
+}
+
+/*A propos de nous*/
+function AProposDeNous(){
+	include 'views/About.php';
+
+}
 
 ?>

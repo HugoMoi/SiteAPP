@@ -140,5 +140,63 @@ function AProposDeNous(){
 	include 'views/About.php';
 
 }
+/*Partie Minh Nam*/
+function inscription(){
+	include "views/Inscription.php";
+}
+
+function connexion(){
+    $bdd = bdd();
+    if(isset($_POST['formconnexion']))
+    {
+        $pseudoconnect = htmlspecialchars(($_POST['pseudoconnect']));
+        $mdpconnect=sha1($_POST['mdpconnect']);
+        if(!empty($pseudoconnect) AND !empty($mdpconnect))
+        {
+            $requser=SeConnecter($pseudoconnect,$mdpconnect);
+            if($requser->rowCount()==1)
+            {
+                $userinfo = $requser->fetch();
+                if($userinfo['confirme']==1)
+                {
+                    session_start();
+                    $_SESSION['id'] = $userinfo['id'];
+                    $_SESSION['pseudo'] = $userinfo['pseudo'];
+                    $_SESSION['mail'] = $userinfo['mail'];
+                    header("Location: index.php?action=profil");
+                }
+                elseif ($userinfo['confirme']==1 AND $userinfo['admin']==1)
+                {
+                    header("Location: Administration.php");
+                }
+                else
+                {   
+                    $erreur = "Votre compte n'a pas été confirmé !";
+                }
+            }
+            else
+            {
+                $erreur= "Votre pseudo et mot de passe ne correspondent pas ";
+            }
+        }
+        else
+        {
+            $erreur = "Tous les champs doivent être complétés";
+        }
+    }
+	    include "views/Connexion.php";
+}
+
+function profil (){
+	include "views/profil.php";
+}
+
+function deconnexion(){
+	include "views/deconnexion.php";	
+}
+
+function editionprofil(){
+    include "views/editionprofil.php";    
+}
 
 ?>

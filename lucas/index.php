@@ -26,9 +26,45 @@ if(isset($_GET["action"]) && !empty($_GET['action'])){
         case 'updateRoom':
             updateRoom();
             break;
+        case 'forum':
+            forum();
+            break;
+        case 'categorie':
+        	categorie();
+        	break;
+        case 'topic':
+            topic();
+        break;
+        case 'accueil':
+            accueil();
+            break;
+        case 'expertise':
+            expertise();
+            break;
+        case 'FAQ':
+            FAQ();
+            break;
+        case 'AProposDeNous':
+            AProposDeNous();
+            break;
+                case 'inscription':
+            inscription();
+            break;
+        case 'connexion':
+            connexion();
+            break;
+        case 'profil':
+            profil();
+            break;
+        case 'deconnexion':
+            deconnexion();
+            break;
+        case 'editionprofil':
+            editionprofil();
+            break;
     }
 } else {
-    general();
+    accueil();
 }
 
 ?>

@@ -5,7 +5,9 @@ include "bdd.php";
 /*fonction pour forum.php*/
 function affichForum(){
 	$bdd=bdd();
-	$reqcategories=$bdd -> query('SELECT* FROM categorie ');
+	$reqcategories=$bdd -> prepare('SELECT* FROM categorie ');
+	$reqcategories->execute(array());
+
 	
 	return $reqcategories;
 }
@@ -22,7 +24,8 @@ function affichNbTopic($num){
 /*fonction pour categorie.php*/
 function affichCategorie($selection){
 	$bdd=bdd();
-	$request=$bdd-> query("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection'");
+	$request=$bdd-> prepare("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection'");
+	$request->execute(array());
 	return $request;
 }
 
@@ -39,7 +42,8 @@ function nbrMessage($num){
 
 function addTopic($selection,$titre,$pseudo,$date,$question){
 	$bdd=bdd();
-	$request2=$bdd-> query("SELECT* FROM categorie WHERE categorie.nom='$selection'");
+	$request2=$bdd-> prepare("SELECT* FROM categorie WHERE categorie.nom='$selection'");
+	$request2->execute(array());
 	$liste=$request2->fetch();
 	$idTopic=$liste['id']; /*pour l'id de la catégorie.*/
 
@@ -59,7 +63,8 @@ function affichQuestion($selection,$numtopic){
 
 function affichReponse($numtopic){
 	$bdd=bdd();
-	$reqReponse=$bdd -> query("SELECT * FROM message JOIN topic ON message.id_topic=topic.id_topic WHERE topic.id_topic='$numtopic' ORDER BY message.date_message");
+	$reqReponse=$bdd -> prepare("SELECT * FROM message JOIN topic ON message.id_topic=topic.id_topic WHERE topic.id_topic='$numtopic' ORDER BY message.date_message");
+	$reqReponse->execute(array());
 	return $reqReponse;
 
 }
@@ -79,7 +84,8 @@ function catalogue(){
 
 function affichFAQ(){
      $bdd=bdd();
-	$reqFAQ = $bdd->query('SELECT * FROM post');
+	$reqFAQ = $bdd->prepare('SELECT * FROM post');
+	$reqFAQ->execute(array());
 	return $reqFAQ;
 }
 
@@ -97,6 +103,12 @@ function lamps(int $idr) {
 	$lamps = $bdd->prepare('SELECT * FROM lamp WHERE RoomID=?');
 	$lamps->execute(array($idr));
 	return $lamps;
+}
+function captors(int $idr) {
+    $bdd = bdd();
+    $captors = $bdd->prepare('SELECT * FROM captor WHERE RoomID=?');
+    $captors->execute(array($idr));
+    return $captors;
 }
 function windows(int $idr) {
 	$bdd = bdd();
@@ -171,6 +183,26 @@ function insertRoom() {
 		$reqCaptor->execute(['CaptorName'=> $CaptorName,'RoomID' => $roomId['RoomID']]);
     } 
 }
+function rooms(int $idr) {
+	$bdd = bdd();
+	$rooms = $bdd->prepare("SELECT * FROM room WHERE RoomID = ? ");
+	$rooms->execute(array($idr));
+	return $rooms;		
+}
+
+function updatedRoom($roomTemp,$idr,$lamps,$windows,$captors) {
+	$bdd = bdd();
+    $req = $bdd->prepare("UPDATE room SET RoomName = :RoomName, RoomTemp = :RoomTemp) WHERE RoomID = :RoomID");
+    $req->execute(['RoomName' => $_POST['roomName'],'RoomTemp'=>$roomTemp,'RoomID'=>$idr]);
+ 
+	/*while ($window= $windows->fetch()) {
+		$idw = $window['WindowID'];
+		$reqWindow = $bdd->prepare("UPDATE window SET WindowName = :WindowName, RoomID= :RoomID) WHERE WindowID = :WindowID");
+		$windowName = $_POST['nbwindow'.$idw];
+    	$reqWindow->execute(['WindowName' => $windowName,'RoomID'=>$idr,'WindowID'=>$idw]);
+	}*/
+	
+}
 
 /*Minh Nam*/
 
@@ -238,5 +270,37 @@ function AffichEditProfil($VerifId){
    }
 
 
- }
+	}
+
+	function AffichAdmin(){
+		if(isset($_GET['admin']) AND $_GET['admin']==0)
+{
+	exit();
+}
+if(isset($_GET['id']) AND $_GET['id']>0)
+{
+	$getid = intval($_GET['id']);
+	$requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
+	$requser->execute(array($getid));
+	$userinfo = $requser->fetch();
+}
+if(isset($_GET['confirme']) AND !empty($_GET['confirme']))
+{
+	$confirme = (int) $_GET['confirme'];
+	$req =  $bdd -> prepare('UPDATE membres SET confirme = 1 WHERE id = ?');
+	$req->execute(array($confirme));	
+}
+if(isset($_GET['delete']) AND !empty($_GET['delete']))
+{
+	$delete = (int) $_GET['delete'];
+	$req =  $bdd -> prepare('DELETE FROM membres  WHERE id = ?');
+	$req->execute(array($delete));	
+}
+$membres = $bdd->prepare('SELECT * FROM membres');
+	$membres->execute(array($delete));	
+
+
+
+	}
+
 ?>

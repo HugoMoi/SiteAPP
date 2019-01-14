@@ -10,11 +10,12 @@ include("General.php");
 	<body>
 		
 		<div class="cadre" >
+			<a href="index.php?action=inscription" style="text-decoration: none;color: black;font-size: 0.7em;">Pas encore de compte?</a>
 			<h2 align="center">Connexion</h2>
 			<br /><br /><br />
 			<form method="POST" action="">
 				<div class="log">
-				<input type="text" name="pseudoconnect" placeholder="pseudo" />
+				<input type="text" id="pseudo" name="pseudoconnect" placeholder="pseudo" />
 				<input type="password" name="mdpconnect" placeholder="Mot de passe" />
 				</div>
 				<br><br>
@@ -29,3 +30,9 @@ include("General.php");
 		</div>
 	</body>
 </html>
+
+ <script>
+window.onload = function() {
+  document.getElementById("pseudo").focus();
+};
+</script>

@@ -1,15 +1,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>diagramme humite</title>
-<script src="Highcharts-7.0.1/code/highcharts.js"></script>
-</script>
-
+<title>diagramme humidité</title>
 </head>
 <body>
 
-<script src="Highcharts-7.0.1/code/highcharts.js"></script>
-<script src="Highcharts-7.0.1code/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
@@ -21,17 +17,17 @@
 
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $result=$conn->query('SELECT date,number FROM myDATE');
+    $result=$conn->query('SELECT date,humite FROM dbStatistique');
 
     while($row=$result->fetch()){
         $day[]=$row['date'];
-        $number[]=$row['number'];
+        $pourcent[]=$row['humite'];
     }
 
     $day=json_encode($day);
     //print($day);
 
-    $number=json_encode($number,JSON_NUMERIC_CHECK);//后缀定义讲字串符转化为数字
+    $pourcent=json_encode($pourcent,JSON_NUMERIC_CHECK);//后缀定义讲字串符转化为数字
     //print($number);
 
     $conn = null;
@@ -76,8 +72,8 @@ Highcharts.chart('container', {
         }
     },
     series: [{
-        name: 'humite',
-        data: <?php echo $number; ?>,
+        name: 'humidité',
+        data: <?php echo $pourcent; ?>,
     }]
 });
 </script>

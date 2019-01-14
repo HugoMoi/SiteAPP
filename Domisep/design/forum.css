@@ -1,0 +1,31 @@
+.categorie{
+	padding: 40px 10px 5px 10px;
+	background-color: #ad0d1a;
+	width: 200px;
+	text-align: center;
+	margin-bottom: 10px;
+	float: left;
+	margin-left: 10px;
+	text-decoration: none;
+	color: white;
+}
+h2{
+	padding-left: 23%;
+}
+.totalCategorie{
+	width: 55%;
+	margin-left: 40%;
+	margin-right: auto;
+	float: right;
+}
+.categorie:hover{
+	background-color: #850d17;
+}
+/*fond */
+body{
+    background-image:url(../image/forum2.jpg);
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+
+}

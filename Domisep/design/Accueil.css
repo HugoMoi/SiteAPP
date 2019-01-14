@@ -1,0 +1,71 @@
+body{
+	margin: 0;
+}
+
+.presentation{ /*bandeau avec l'image*/
+	width: 100%;
+	height: 400px;
+    background-image:url(../image/photoAccueil.jpg);
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+}
+.titre{/*h1 du bandeau*/
+	color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	margin-bottom: 10px;
+	font-size: 6em;
+
+}
+.secondTitre{ /*h2 du bandeau*/
+	color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	font-size: 3em;
+}
+.Apropos h1{
+	text-align: center;
+	font-size: 4em;
+	color: black;
+}
+
+/*pour chaque bandeau*/
+.Apropos div{
+	padding: 20px;
+	height: 40%;
+	width: auto;
+}
+
+.Apropos .img{
+	height: 100%;
+	width: auto;
+}
+
+/*Pour les bandeaux gris*/
+.PresentationGris{
+	
+	background-color: #ddd;
+}
+
+.PresentationGris .img{
+	float: left;
+	padding-right: 40px;
+}
+
+.PresentationGris p{
+	padding: 30px;
+}
+
+/*Pour les bandeaux blancs*/
+.PresentationBlanc{
+	background-color: white;
+}
+.PresentationBlanc .img{
+	float: right;
+	padding-left: 40px;
+
+}
+

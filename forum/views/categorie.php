@@ -49,10 +49,10 @@ else{
     <form method='POST' action="" ; >
     	<label>Connecté en tant que <?php echo $_SESSION['pseudo'] ?></label><br><br>
 
-        <label for="titre">Ajouter un titre à votre topic :</label><br>
+        <label for="titre" class="question">Ajouter un titre à votre topic :</label><br>
         <input type="text" name="titre" id="titre" size="80"><br><br>
 
-		<label for="Question">Ajouter votre message :</label><br>
+		<label for="Question" class="question2">Ajouter votre message :</label><br>
         <textarea type="text" name="Question" id="Question" cols="62" rows="4"></textarea><br><br>
 
 

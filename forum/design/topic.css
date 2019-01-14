@@ -4,7 +4,8 @@
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
 	padding-left: 10px;
-	background-color: #c10000;;
+	background-color: #76707087;
+	font-family: Times, Times New Roman,sans-serif;
 
 }
 .question{
@@ -15,10 +16,14 @@
 	border-bottom: 1px solid black;
 	margin-right: 30px;
 	margin-left: 30px;
+	border-top-left-radius: 2px;
+	border-top-right-radius:2px;
 }
 /*css des messages*/
 .message{
 	border: 1px solid #EEEE;
+	font-family: Times, Times New Roman,sans-serif;
+
 
 }
 .message:hover{
@@ -46,4 +51,43 @@
 	padding:45px 20px 40px 20px;
 	font-size: 1.3em;
 
+}
+h1{
+	font-family:  Bookman, URW Bookman L, serif;
+	margin: 23px;
+	text-align: center;
+	
+}
+.publier{
+		display: block;
+	background-color: black;
+	color: white;
+	border:none;
+	margin-right: auto;
+	margin-left: auto;
+	width: 100px;
+	height: 30px;
+	border-radius: 100px;
+	margin-top: 10px;
+}
+
+.adminpart{
+	background-color: #a49e9e8f;
+	border-radius: 3px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+.question{
+	
+		border-bottom: 2px;
+}
+.label{
+	margin:0px; 
+	padding:0px;
+}
+
+.droite{
+	padding-top: 5px;
+	margin-top: 16px;
 }

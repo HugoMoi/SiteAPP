@@ -1,53 +1,63 @@
-<?php 
-$bdd = new PDO("mysql:host=localhost;dbname=faq",'root','');
-$messages = $bdd->query('SELECT * FROM post');?>
+<?php include("General.php")?>
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>FAQ</title>
      <meta charset="utf-8">
-    <link rel="stylesheet" href="../Style/FAQ.css" />
-    <link rel="stylesheet" href="../Style/General.css" />
+    <link rel="stylesheet" href="design/FAQ.css" />
 
 </head>
 <body>
 
-<?php include("General.php") ?>
-
-
 <h1>FAQ</h1>
 <h2>Les questions les plus fréquentes</h2>
-
-<?php $compteur=0;
-    while($post = $messages->fetch()){ ?>
-       <?php $compteur++;?>
+<div class="faq">
+<?php 
+    while($post = $reqFAQ->fetch()){ 
+       ?>
 
     <section class="question">
-        <input type="checkbox" id="=<?php echo $compteur; ?>">
+        <input type="checkbox" id="<?= $post['ID']?>">
         
         <!-- la question -->
-        <label for="=<?php echo $compteur; ?>"> 
-            <?php 
-            $id = $compteur;
-            $test = $bdd->prepare('SELECT Question FROM post WHERE id = ?');
-            $test -> execute(array($id));
-            echo $post['Question']; ?>
+        <label for="<?= $post['ID'] ?>"> 
+            <?php echo $post['Question'];?>
         </label>
 
         <!--la réponse  -->
-        <p>  
-            <?php $id = $compteur;
-            $test = $bdd->prepare('SELECT Reponse FROM post WHERE id = ?');
-            $test -> execute(array($id));
-            echo $post['Reponse'];
-            ?>
-        </p>
+        <p> <?php echo $post['Reponse'];?>   </p>
     </section>
-    <?php
-    }?>
+    <?php } ?>
+</div>
 
+
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!coté admin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<?php 
+/*$requser = $bdd-> prepare("SELECT * FROM membres where id = ?");
+$requser->*/
+if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) { ?>
+
+<br><br>
+<div class="adminpart" align="center">
+    <form method='POST' action="" ; >
+        <label for="question">Ajouter une question :</label><br>
+        <input type="text" name="question" size="80"><br><br>
+        <label for="reponse">Réponse :</label><br>
+        <textarea name='reponse'rows='4' id="reponse" cols="61"></textarea><br><br>
+
+        <input type="submit"  name='publier' class="publier" value="Publier" />
+
+    </form>
+    <?php }
+else  {
+
+ } ?>
+</div><br><br>
 
 <footer>Si vous n'avez pas trouvé de réponse à votre question vous pouvez regader sur le forum  ou alors nous contacter directement</footer>
+
+
 </body>
 </html>

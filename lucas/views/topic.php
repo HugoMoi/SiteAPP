@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="enemble">
-	<h1>Catégorie '<?php echo $_GET['var']?>'</h1><br>
+	<h1 >Catégorie '<?php echo $_GET['var']?>'</h1><br>
 	<div class="probleme">
 
 
@@ -68,8 +68,8 @@ else{
     <form method='POST' action="" ; >
     	<label>Connecté en tant que <?php echo $_SESSION['pseudo'] ?></label><br><br>
 
-        <label for="reponse">Ajouter une réponse :</label><br>
-        <textarea type="text" name="reponse" id="reponse" cols="65" rows="4"required></textarea><br><br>
+        <label class="label" for="reponse">Ajouter une réponse :</label><br>
+        <textarea type="text" name="reponse" id="reponse" cols="65" rows="4"required class="testarea"></textarea><br><br>
 
         <input type="submit"  name='publier' class="publier" value="Publier" />
 

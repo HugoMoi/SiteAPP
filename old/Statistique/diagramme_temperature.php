@@ -16,26 +16,32 @@
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $result=$conn->query('SELECT date,number FROM myDATE');
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE date<="2019-1-31"');
 
     while($row=$result->fetch()){
-        $day[]=$row['date'];
-        $number[]=$row['number'];
+        $date1[]=$row['date'];
+        $temperature1[]=$row['temperature'];
     }
 
-    $day=json_encode($day);
-    //print($day);
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE date>="2019-2-1" AND date<="2019-2-28"');
 
-    $number=json_encode($number,JSON_NUMERIC_CHECK);
-    //print($number);
+    while($row=$result->fetch()){
+        $date2[]=$row['date'];
+        $temperature2[]=$row['temperature'];
+    }
+
+    $date1=json_encode($date1);
+    $date2=json_encode($date2);
+
+    $temperature1=json_encode($temperature1,JSON_NUMERIC_CHECK);
+    $temperature2=json_encode($temperature2,JSON_NUMERIC_CHECK);
 
     $conn = null;
 ?>
 
-<script src="Highcharts-7.0.1/code/highcharts.js"></script>
-<script src="Highcharts-7.0.1code/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
-<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
+<div id="container" style=" margin: 0 auto"></div>
 
 <script>
 
@@ -49,7 +55,7 @@
         },
 
         xAxis: {
-            categories: <?php echo $day;?>,
+            categories: <?php echo $date1;?>,
         },
     
         yAxis: {
@@ -84,9 +90,10 @@
     
         series: [{
             name: 'temperature',
-            data: <?php echo $number; ?>,
+            data: <?php echo $temperature1; ?>,
         }]
     });
+
 </script>
 </body>
 </html>

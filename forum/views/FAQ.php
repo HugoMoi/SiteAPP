@@ -6,7 +6,6 @@
      <meta charset="utf-8">
     <link rel="stylesheet" href="design/FAQ.css" />
 
-
 </head>
 <body>
 
@@ -34,6 +33,12 @@
 
 
 <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!coté admin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+<?php 
+/*$requser = $bdd-> prepare("SELECT * FROM membres where id = ?");
+$requser->*/
+if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) { ?>
+
 <br><br>
 <div class="adminpart" align="center">
     <form method='POST' action="" ; >
@@ -45,8 +50,14 @@
         <input type="submit"  name='publier' class="publier" value="Publier" />
 
     </form>
+    <?php }
+else  {
+
+ } ?>
 </div><br><br>
 
 <footer>Si vous n'avez pas trouvé de réponse à votre question vous pouvez regader sur le forum  ou alors nous contacter directement</footer>
+
+
 </body>
 </html>

@@ -122,6 +122,12 @@ function actionWindow() {
     include "views/maison.php";
  	} 
 }
+function roomTemp($roomTemp) {
+    if (empty($_POST['roomTemp'])) {
+        $roomTemp = NULL;
+    }
+    return $roomTemp;
+}
 function addRoom() {
     if (isset($_POST['roomName'])) {
         insertRoom();
@@ -129,10 +135,28 @@ function addRoom() {
     }
     include "views/addRoom.php";
 }
+
 function updateRoom() {
     if(isset($_GET['idr']) AND !empty($_GET['idr'])) {
+        $idr = (int) $_GET['idr'];
+        $rooms = rooms($idr);
+        $room = $rooms->fetch();
+        $roomTemp = $room['RoomTemp'];
+        roomTemp($roomTemp);
+        $lamps = lamps($idr);
+        $windows = windows($idr);
+        $captors = captors($idr);
+        if (isset($_POST['roomName'])) {
+            
+            updatedRoom($roomTemp,$idr,$lamps,$windows,$captors);
+            // header('Location: index.php?action=maison');
+        }
+        
     }
     include "views/updateRoom.php";
+
+
+    
 }
 
 
@@ -234,17 +258,23 @@ function connexion(){
             if($requser->rowCount()==1)
             {
                 $userinfo = $requser->fetch();
-                if($userinfo['confirme']==1)
+                if($userinfo['confirme']==1 AND $userinfo['admin']==0)
                 {
                     session_start();
                     $_SESSION['id'] = $userinfo['id'];
                     $_SESSION['pseudo'] = $userinfo['pseudo'];
                     $_SESSION['mail'] = $userinfo['mail'];
+                    $_SESSION['admin'] = $userinfo['admin'];
                     header("Location: index.php?action=profil");
                 }
                 elseif ($userinfo['confirme']==1 AND $userinfo['admin']==1)
                 {
-                    header("Location: Administration.php");
+                    session_start();
+                    $_SESSION['id'] = $userinfo['id'];
+                    $_SESSION['pseudo'] = $userinfo['pseudo'];
+                    $_SESSION['mail'] = $userinfo['mail'];
+                    $_SESSION['admin'] = $userinfo['admin'];
+                    header("Location: index.php?action=administration");
                 }
                 else
                 {   
@@ -278,5 +308,64 @@ function editionprofil(){
     $VerifId=$_SESSION['id'];
     EditProfil($VerifId);}
     include "views/editionprofil.php";
+}
+
+
+function parametre(){
+        include "views/parametres.php";
+
+}
+function contact(){
+if(isset($_POST['sendmail']))
+ {
+   if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['message'])) 
+   {
+        $header="MIME-Version: 1.0\r\n";
+        $header.='From:"WebISep"<domisepg4@gmail.com>'."\n";
+        $header.='Content-Type:text/html; charset="uft-8"'."\n";
+        $header.='Content-Transfer-Encoding: 8bit';
+      $message='
+      <html>
+         <body>
+            <div align="center">
+               <u>Nom de l\'expéditeur :</u>'.$_POST['pseudo'].'<br />
+               <u>Mail de l\'expéditeur :</u>'.$_POST['mail'].'<br />
+               <br />
+               '.nl2br($_POST['message']).'
+               <br />
+            </div>
+         </body>
+      </html>
+      ';
+      mail("nguyen.minhnam@hotmail.fr", "DomIsep", $message, $header);
+      $msg="Votre message a bien été envoyé !";
+   } 
+   else 
+   {
+      $msg="Tous les champs doivent être complétés !";
+   }
+ }  
+ include"views/Contact.php";
+}
+function administration(){
+    $bdd=bdd();
+    if(isset($_GET['admin']) AND $_GET['admin']==0)
+    {
+        exit();
+    }
+    if(isset($_GET['id']) AND $_GET['id']>0)
+    {
+        Administrationutilisateur();
+    }
+    if(isset($_GET['confirme']) AND !empty($_GET['confirme']))
+    {
+       Administrationconfirme();   
+    }
+    if(isset($_GET['delete']) AND !empty($_GET['delete']))
+    {
+        Administrationdelete();
+    }
+    $membres = $bdd->query('SELECT * FROM membres');
+    include "views/Administration.php";
 }
 ?>

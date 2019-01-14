@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>Forum</title>
-	<link rel="stylesheet" href="design/forum.css" />
+	<link rel="stylesheet" href="design/essay.css" />
 
 
 

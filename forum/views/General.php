@@ -32,9 +32,9 @@
 						<li class="onglet"><a href="#">Menu</a>
 							<div class="submenu">
 								<a href=index.php?action=maison>Maison</a>
-								<a href="#">Statistiques</a>
+								<a href="index.php?action=statistique">Statistiques</a>
 								<a href="index.php?action=profil">Profil</a>
-								<a href="#">Paramètres</a>
+								<a href="index.php?action=parametre">Paramètres</a>
 							</div>
 						</li>
 					</ul>

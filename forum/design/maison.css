@@ -31,6 +31,7 @@
 	/*border: 1px solid black;*/
 	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
   position: relative;
+  background-color: #cfcfcf;
 }
 #pièce {
 	width: 50%;
@@ -62,6 +63,7 @@
 } 
 #bot {
   /*display: none;*/
+  background-color: #f3f3f3;
 } 
 #box input[type=checkbox]:checked~#bot {
         display: block;

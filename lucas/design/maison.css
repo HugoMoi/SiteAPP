@@ -1,15 +1,15 @@
 #content {
-	position: absolute;
-	left: 10px;
-	top: 110px;
-	right: 10px;
+  position: absolute;
+  left: 10px;
+  top: 110px;
+  right: 10px;
 }
 #box {
-	/*border: 1px solid black;*/
-	display: inline-grid;
-  margin:	9px;
+  /*border: 1px solid black;*/
+  display: inline-grid;
+  margin: 9px;
   position: relative;
-	width: calc(25% - 22px);
+  width: calc(25% - 22px);
 }
 #addRoom {
   display: inline-grid;
@@ -27,29 +27,30 @@
 
 #top {
   height:50px;
-	width: calc(100% - 2px);	
-	/*border: 1px solid black;*/
-	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  width: calc(100% - 2px);  
+  /*border: 1px solid black;*/
+  box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
   position: relative;
+  background-color: #cfcfcf;
 }
 #pièce {
-	width: 50%;
-	/*border: 1px solid black;*/
-	text-align: left;
-	float: left;
-	height: 33px;
-	padding: 15px 0 0 10px;
+  width: 50%;
+  /*border: 1px solid black;*/
+  text-align: left;
+  float: left;
+  height: 33px;
+  padding: 15px 0 0 10px;
 }
 #info {
   float: right;
   padding-right: 5px;
 }
 #temp, #light {
-	/*border: 1px solid black;*/
-	display: inline-block;
-	height: 33px;
-	vertical-align: middle;
-	padding: 15px 0 0;
+  /*border: 1px solid black;*/
+  display: inline-block;
+  height: 33px;
+  vertical-align: middle;
+  padding: 15px 0 0;
 }
 #light {
   width: 25px;
@@ -62,6 +63,7 @@
 } 
 #bot {
   /*display: none;*/
+  background-color: #f3f3f3;
 } 
 #box input[type=checkbox]:checked~#bot {
         display: block;
@@ -85,29 +87,29 @@
         border-left-color: inherit;
 }
 #bot {
-	position: relative;
-	height: auto;	
-	/*border: 1px solid black;*/
+  position: relative;
+  height: auto; 
+  /*border: 1px solid black;*/
 }
 #control {
-	/*border: 1px solid black;*/
-	display: inline-grid;
-	width: 80%;
-	padding-top: 5px;
-	height: calc(100% - 38px);
+  /*border: 1px solid black;*/
+  display: inline-grid;
+  width: 80%;
+  padding-top: 5px;
+  height: calc(100% - 38px);
 }
 #control div {
-	/*border: 1px solid black;*/
-	position: relative;
-	
+  /*border: 1px solid black;*/
+  position: relative;
+  
 }
 
 #control div p {
-	display: inline-block;
-	margin-top: 0;
-	text-align: left;
-	padding-top: 1px;
-	padding-left: 20%;
+  display: inline-block;
+  margin-top: 0;
+  text-align: left;
+  padding-top: 1px;
+  padding-left: 20%;
 }
 #options {
   display: inline-grid;

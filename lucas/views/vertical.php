@@ -19,7 +19,22 @@ var output = document.getElementById("print");
 output.innerHTML = slider.value;
 
 slider.oninput = function() {
-	output.innerHTML = this.value;
-}
+	output.innerHTML = this.value; 
+}  
+
+function thermos(value) {  
+    $.ajax({  
+        url:"index.php?action=thermometer",  
+        method:"POST",  
+        data:{value:value},  
+        dataType:"text",  
+        success:function(data){}  
+    });  
+}  
+$(document).on('click', 'vertical', function(){  
+  var value = $(this).value; 
+  thermos(value);  
+});
+
 </script>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Maison</title>
+		<title>Nouvelle pièce</title>
 		<link rel="stylesheet" href="design/general.css">
 		<link rel="stylesheet" href="design/addRoom.css">
 		<meta charset="utf-8">
@@ -13,12 +13,9 @@
 		<div id="content">
 			<form method="post" action="index.php?action=addRoom">
         		<p>
-            		<label>
-                		Nom de la pièce :
+            		<label> Nom de la pièce :
                 		<input type="text" name="roomName" required>
-            		</label>
-        		</p>
-        
+            		</label>        
         		<p>
            			<label> Gestion de la température ?
                			<input type="checkbox" name="roomTemp"> 
@@ -45,9 +42,11 @@
     					</div>
     				</label>
     			</p>
-        		<label>
-        			<input type="submit" value="Ajouter">
-        		</label>
+                <p>
+        		  <label>
+        		      <input type="submit" value="Ajouter">
+        		  </label>
+                </p>
     		</form>
 		</div>
 	</body>

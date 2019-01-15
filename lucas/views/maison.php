@@ -1,6 +1,10 @@
 <?php 
+include("views/general.php");
 $bdd = bdd();
-$rooms = $bdd->query('SELECT * FROM room'); ?>
+if (!empty($_SESSION["id"])) {
+	$rooms = $bdd->query("SELECT * FROM room WHERE MemberID = '".$_SESSION["id"]."'");
+
+ ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,10 +16,9 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
 	</head>
 	<body>
 
-		<?php include("views/general.php"); ?>
 		
 		<div id="content">
-			<?php while ($room = $rooms->fetch()) { 
+			<?php foreach($rooms as $room) { 
 				$idr= $room['RoomID'];
 			?>
 
@@ -34,7 +37,7 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
 					<div id="control">
 
 						<?php $lamps = lamps($idr);
-						while ($lamp= $lamps->fetch()) {
+						foreach ($lamps as $lamp) {
 							$idl = $lamp['LampID'];
 							$statel = $lamp['LampCondition'];
 						?>
@@ -52,7 +55,7 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
 
   						<?php }
 						$windows = windows($idr);
-						while ($window = $windows->fetch()) { 
+						foreach ($windows as $window) { 
 							$idw = $window['WindowID'];
 							$statew = $window['WindowCondition'];
 						?>
@@ -72,7 +75,7 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
 					</div>
 					<div id="options">
 						<div id="parameters">
-							<a href="index.php?action=updateRoom&idr=<?= $idr ?>">op</a>
+							<a href="index.php?action=editRoom&idr=<?= $idr ?>"><img style="width: 20px;height: auto;" src="image/option.png"></a>
 						</div>
 					</div>
 				</div>	
@@ -82,5 +85,10 @@ $rooms = $bdd->query('SELECT * FROM room'); ?>
   				<a href="index.php?action=addRoom" id="add"></a>
   			</div>
 		</div>
+	<?php } 
+	else { 
+		header('Location: index.php?action=connexion');
+	}
+	?>
 	</body>
 </html>

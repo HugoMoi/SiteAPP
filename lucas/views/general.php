@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 	<head>
 		<title>General</title>
@@ -9,9 +9,17 @@
 	</head>
 	<body>
 		<header>
-				<a href="index.php"><img src="design/Logo.png" alt="logo" id="logo"class="flottant"/></a>
-				<a class="menu-espaceclient" href=Connexion.php>Connexion</a>
-				<a class="menu-inscription" href=Inscription.php>Inscription</a>
+				<a href="index.php"><img src="image/Logo.png" alt="logo" id="logo"class="flottant"/></a>
+				<?php 
+				if (empty($_SESSION['pseudo'])) {?>
+					<a class="menu-espaceclient" href=index.php?action=connexion>Connexion</a>
+					<a class="menu-inscription" href=index.php?action=inscription>Inscription</a>
+					<?php }
+				else  {?>
+					<a class="menu-espaceclient" href=index.php?action=deconnexion>Déconnexion</a>
+					<a class="menu-inscription" href=index.php?action=profil>Bonjour <?php echo $_SESSION['pseudo']?></a>
+
+					 <?php } ?>
 
 				<nav>
 					<ul>

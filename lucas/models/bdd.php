@@ -8,4 +8,9 @@ function bdd() {
         die('Erreur : ' . $e->getMessage());
 	}
 }
+
+function connect() {
+	$connect = mysqli_connect("localhost", "root", "", "webisep");  
+	return $connect;
+}
 ?>

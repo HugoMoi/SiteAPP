@@ -4,7 +4,7 @@ include "models/model.php";
 
 
 function maison() {
-    include "views/maison.php";
+  include "views/maison.php";
 }
 
 function vertical() {
@@ -41,162 +41,247 @@ function actionWindow() {
  	} 
 }
 
+
 function addRoom() {
     if (isset($_POST['roomName'])) {
-        insertRoom();
+        $roomTemp = 0;
+        roomTemp($roomTemp);
+        insertRoom($roomTemp);
         header('Location: index.php?action=maison');
     }
     include "views/addRoom.php";
 }
 
-function updateRoom() {
-    if(isset($_GET['idr']) AND !empty($_GET['idr'])) {
+function editRoom() {
+  $idr = (int) $_GET['idr'];
+  include "views/editRoom.php";
+}
 
+function roomTemp($roomTemp) {
+    if (empty($_POST['roomTemp'])) {
+        $RoomTempState = 0;
     }
-    include "views/updateRoom.php";
-}
-/*Forum*/
-function forum() {
-	$reqcategories= affichForum();
-/*	$nbmessage=affichNbTopic($num);
-*/    include "views/forum.php";
-}
-function categorie(){
-
-	$selection =$_GET['var'];
-	$request=affichCategorie($selection);
-   	if (isset($_POST['publier']))
-        {  
-       	session_start();
-        date_default_timezone_set( 'Europe/Paris' );
-        $titre=$_POST['titre'];
-    	$question=$_POST['Question'];
-   		$pseudo=$_SESSION['pseudo'];
-   		$date=date("Y-m-d H:i:s");
-		addTopic($selection,$titre,$pseudo,$date,$question);
-		$url="index.php?action=categorie&var=".$selection;
-		header("Location:".$url);
-	}else{
-		// nothing to do: pas de nouveau topic
-	}
-
-		include "views/categorie.php";
+    return $roomTemp;
 }
 
-function topic(){
-	$selection =$_GET['var'];
-	$numtopic=$_GET['numtopic'];
-	$request=affichQuestion($selection,$numtopic);
-	$reqReponse=affichReponse($numtopic);
-
-
-
-        if (isset($_POST['publier']))
- 		{  
- 			session_start();
- 			date_default_timezone_set( 'Europe/Paris' );
- 			$reponse=$_POST['reponse'];
-        	$pseudo=$_SESSION['pseudo'];
-        	$date=date("Y-m-d H:i:s");
-        	addPost($numtopic,$reponse,$pseudo,$date);
-
-		/*redirection*/
- 		$url="index.php?action=topic&var=".$selection."&numtopic=".$numtopic;
-		header("Location:".$url);
-}
-	include"views/topic.php";
+function room_add() {
+  room_insert();
 }
 
-/*Accueil*/
-function accueil(){
-	include 'views/Accueil.php';
+function room_remove() {
+  room_delete();
 }
 
-/*Expertise*/
-function expertise(){
-	$messages=catalogue();
-	include 'views/Expertise.php';
-}
-
-/*FAQ*/
-function FAQ(){
-	$reqFAQ=affichFAQ();
-	 if (isset($_POST['publier']))
-        {
-            $question=$_POST['question'];
-            $reponse=$_POST['reponse'];
-            $reqPublier=addQuestion($question,$reponse);
-            header("Location:index.php?action=FAQ");
-
-        }
-        else{
-        	/*nothing to do : pas de nouvelle question*/
-        }
-	include 'views/FAQ.php';
-}
-
-/*A propos de nous*/
-function AProposDeNous(){
-	include 'views/About.php';
-
-}
-/*Partie Minh Nam*/
-function inscription(){
-	include "views/Inscription.php";
-}
-
-function connexion(){
-    $bdd = bdd();
-    if(isset($_POST['formconnexion']))
-    {
-        $pseudoconnect = htmlspecialchars(($_POST['pseudoconnect']));
-        $mdpconnect=sha1($_POST['mdpconnect']);
-        if(!empty($pseudoconnect) AND !empty($mdpconnect))
-        {
-            $requser=SeConnecter($pseudoconnect,$mdpconnect);
-            if($requser->rowCount()==1)
-            {
-                $userinfo = $requser->fetch();
-                if($userinfo['confirme']==1)
-                {
-                    session_start();
-                    $_SESSION['id'] = $userinfo['id'];
-                    $_SESSION['pseudo'] = $userinfo['pseudo'];
-                    $_SESSION['mail'] = $userinfo['mail'];
-                    header("Location: index.php?action=profil");
-                }
-                elseif ($userinfo['confirme']==1 AND $userinfo['admin']==1)
-                {
-                    header("Location: Administration.php");
-                }
-                else
-                {   
-                    $erreur = "Votre compte n'a pas été confirmé !";
-                }
-            }
-            else
-            {
-                $erreur= "Votre pseudo et mot de passe ne correspondent pas ";
-            }
-        }
-        else
-        {
-            $erreur = "Tous les champs doivent être complétés";
-        }
+function room_fetch() {
+  $output = '';
+  $row = 0;
+  $result = room_select();
+  $output .= '  
+    <div>  
+      <table> 
+        <th>Nom de la pièce</th>   
+        <th></th> '; 
+  while($row = mysqli_fetch_array($result)) {  
+    if(mysqli_num_rows($result) > 0) {    
+      $output .= '
+        <tr>
+          <td class="room_name" data-id1="'.$row["RoomID"].'" contenteditable>'.$row["RoomName"].'</td>   
+          <td><a href="index.php?=home"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room">x</button></a></td>  
+        </tr>';   
     }
-	    include "views/Connexion.php";
+    else {  
+      $output .= '
+            <tr>  
+              <td class="noName" id="room_name" contenteditable>Pas de nom</td>    
+              <td><button type="button" name="btn_add_room" id="btn_add_room">+</button></td>  
+            </tr>';
+    }
+    $roomTempText = "";
+    if ($row["RoomTempState"] == 1) {
+      $roomTempText = "checked";
+    }
+    $output .= '        
+          <tr>      
+            <td>Température ?</td>   
+            <td><input type="checkbox" data-id3="'.$row["RoomID"].'" '.$roomTempText.' class="btn_temp"></td>  
+          </tr>
+        </table>  
+      </div>';
+    
+  }
+  echo $output;  
 }
 
-function profil (){
-	include "views/profil.php";
+function room_edit() {
+  $id = (int) $_POST["id"];  
+  $text = $_POST["text"];    
+  room_update($id,$text);
 }
 
-function deconnexion(){
-	include "views/deconnexion.php";	
+function room_temp() { 
+  $id = (int) $_POST["id"];  
+  $text = $_POST["text"];    
+  temp_edit($id,$text);
 }
 
-function editionprofil(){
-    include "views/editionprofil.php";    
+function lamp_add() {
+  lamp_insert();
 }
 
+function lamp_remove() {
+  lamp_delete();
+}
+
+function lamp_fetch() {
+  $output = '';
+  $result = lamp_select();
+  $output .= '  
+      <div>  
+           <table>  
+                <tr>  
+                     <th>Lampes</th>   
+                     <th>Modifier</th>  
+                </tr>';  
+  if(mysqli_num_rows($result) > 0)  
+  {  
+      while($row = mysqli_fetch_array($result))  
+      {  
+           $output .= '  
+                <tr>    
+                     <td class="lamp_name" data-id1="'.$row["LampID"].'" contenteditable>'.$row["LampName"].'</td>   
+                     <td><button type="button" name="btn_delete_lamp" data-id2="'.$row["LampID"].'" class="btn_delete_lamp">x</button></td>  
+                </tr>  
+           ';  
+      }  
+  }  
+ else  
+  {  
+      $output .= '<tr>  
+                          <td>No Lamp</td>  
+                     </tr>';  
+  }  
+  $output .='  
+           <tr>  
+                <td id="lamp_name" contenteditable></td>    
+                <td><button type="button" name="btn_add_lamp" id="btn_add_lamp">+</button></td>  
+           </tr>
+           </table>  
+      </div>';  
+  echo $output;  
+}
+
+function lamp_edit() {
+  $id = (int) $_POST["id"];  
+  $text = $_POST["text"];    
+  lamp_update($id,$text);
+}  
+
+function window_add() {
+  window_insert();
+}
+
+function window_remove() {
+  window_delete();
+}
+
+function window_fetch() {
+  $output = '';
+  $result = window_select();
+  $output .= '  
+      <div>  
+           <table>  
+                <tr>  
+                     <th>Fenêtres</th>   
+                     <th>Modifier</th>  
+                </tr>';  
+  if(mysqli_num_rows($result) > 0)  
+  {  
+      while($row = mysqli_fetch_array($result))  
+      {  
+           $output .= '  
+                <tr>    
+                     <td class="window_name" data-id1="'.$row["WindowID"].'" contenteditable>'.$row["WindowName"].'</td>   
+                     <td><button type="button" name="btn_delete_window" data-id2="'.$row["WindowID"].'" class="btn_delete_window">x</button></td>  
+                </tr>  
+           ';  
+      }  
+  }  
+ else  
+  {  
+      $output .= '<tr>  
+                          <td>No Window</td>  
+                     </tr>';  
+  }  
+  $output .='  
+           <tr>  
+                <td id="window_name" contenteditable></td>    
+                <td><button type="button" name="btn_add_window" id="btn_add_window">+</button></td>  
+           </tr>
+           </table>  
+      </div>';  
+  echo $output;  
+}
+
+function window_edit() {
+  $id = (int) $_POST["id"];  
+  $text = $_POST["text"];    
+  window_update($id,$text);
+}
+
+function captor_add() {
+  captor_insert();
+}
+
+function captor_remove() {
+  captor_delete();
+}
+
+function captor_fetch() {
+  $output = '';
+  $result = captor_select();
+  $output .= '  
+      <div>  
+           <table>  
+                <tr>  
+                     <th>Capteurs</th>   
+                     <th>Modifier</th>  
+                </tr>';  
+  if(mysqli_num_rows($result) > 0)  
+  {  
+      while($row = mysqli_fetch_array($result))  
+      {  
+           $output .= '  
+                <tr>    
+                     <td class="captor_name" data-id1="'.$row["CaptorID"].'" contenteditable>'.$row["CaptorName"].'</td>   
+                     <td><button type="button" name="btn_delete_captor" data-id2="'.$row["CaptorID"].'" class="btn_delete_captor">x</button></td>  
+                </tr>  
+           ';  
+      }  
+  }  
+ else  
+  {  
+      $output .= '<tr>  
+                          <td>No Captor</td>  
+                     </tr>';  
+  }  
+  $output .='  
+           <tr>  
+                <td id="captor_name" contenteditable></td>    
+                <td><button type="button" name="btn_add_captor" id="btn_add_captor">+</button></td>  
+           </tr>
+           </table>  
+      </div>';  
+  echo $output;  
+}
+
+function captor_edit() {
+  $id = $_POST["id"];  
+  $text = $_POST["text"];    
+  captor_update($id,$text);
+}
+
+function thermometer() {
+  $temp = $_POST["temp"];  
+  temp_update($temp);
+}
 ?>

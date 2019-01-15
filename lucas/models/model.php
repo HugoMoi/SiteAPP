@@ -16,6 +16,13 @@ function windows(int $idr) {
 	return $windows;
 }
 
+function captors(int $idr) {
+    $bdd = bdd();
+    $captors = $bdd->prepare('SELECT * FROM captor WHERE RoomID=?');
+    $captors->execute(array($idr));
+    return $captors;
+}
+
 function checkl(int $getidl) {
 	$bdd = bdd();
 	$checkl = $bdd->prepare('SELECT LampID FROM lamp WHERE LampID = ? AND LampCondition = 1');
@@ -58,13 +65,9 @@ function onw(int $getidw) {
     return $onw;
 }
 
-function insertRoom() {
+function insertRoom($roomTemp) {
     $bdd = bdd();
     $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTemp`) VALUES (:RoomName,:RoomTemp)");
-    $roomTemp = 0;
-    if (empty($_POST['roomTemp'])) {
-    	$roomTemp = NULL;
-    }
     $req->execute(['RoomName' => $_POST['roomName'],'RoomTemp'=>$roomTemp]);
     
     $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName");
@@ -74,107 +77,149 @@ function insertRoom() {
 	$nbLamp = $_POST['nbLamp'];
     for ($i=0;$i<$nbLamp;$i++) {
 		$reqLamp = $bdd->prepare("INSERT INTO `lamp`(`LampName`, `RoomID`) VALUES (:LampName,:RoomID)");
-		$windowName = $_POST['nbLamp'.$i];
-		$reqLamp->execute(['LampName'=> $windowName,'RoomID' => $roomId['RoomID']]);
+		$reqLamp->execute(['LampName'=> $_POST['nbLamp'.$i],'RoomID' => $roomId['RoomID']]);
     }
 	$nbWindow = $_POST['nbWindow'];
     for ($i=0;$i<$nbWindow;$i++) {
 		$reqWindow = $bdd->prepare("INSERT INTO `window`(`WindowName`, `RoomID`) VALUES (:WindowName,:RoomID)");
-		$windowName = $_POST['nbWindow'.$i];
-		$reqWindow->execute(['WindowName'=> $windowName,'RoomID' => $roomId['RoomID']]);
+		$reqWindow->execute(['WindowName'=> $_POST['nbWindow'.$i],'RoomID' => $roomId['RoomID']]);
     }
     $nbCaptor = $_POST['nbCaptor'];
     for ($i=0;$i<$nbCaptor;$i++) {
 		$reqCaptor = $bdd->prepare("INSERT INTO `captor`(`CaptorName`, `RoomID`) VALUES (:CaptorName,:RoomID)");
-		$CaptorName = $_POST['nbCaptor'.$i];
-		$reqCaptor->execute(['CaptorName'=> $CaptorName,'RoomID' => $roomId['RoomID']]);
+		$reqCaptor->execute(['CaptorName'=> $_POST['nbCaptor'.$i],'RoomID' => $roomId['RoomID']]);
     } 
 }
-/*fonction pour forum.php*/
-function affichForum(){
-	$bdd=bdd();
-	$reqcategories=$bdd -> query('SELECT* FROM categorie ');
-	
-	return $reqcategories;
-}
-function affichNbTopic($num){
-	$bdd=bdd();
-	$reqNbmessage=$bdd ->prepare("SELECT COUNT(titre) FROM topic WHERE id_categorie=?");
-	$reqNbmessage->execute(array($num));
-	$nbmessage=$reqNbmessage ->fetch();
-	return $nbmessage;
+
+function rooms(int $idr) {
+	$bdd = bdd();
+	$rooms = $bdd->prepare("SELECT * FROM room WHERE RoomID = ? ");
+	$rooms->execute(array($idr));
+	return $rooms;		
 }
 
-
-
-/*fonction pour categorie.php*/
-function affichCategorie($selection){
-	$bdd=bdd();
-	$request=$bdd-> query("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection'");
-	return $request;
+function room_update($id,$text) {
+    $connect = connect();
+    $sql = "UPDATE room SET RoomName ='$text' WHERE RoomID ='$id'";  
+    if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
+    }    
 }
 
-/*fonctionne aussi dans le topic.php*/
-function nbrMessage($num){
-
-	$bdd=bdd();
-	/*compter le nbre de message par categorie*/
-	$reqNbmessage=$bdd ->prepare("SELECT COUNT(reponse) FROM message WHERE id_topic=?");
-	$reqNbmessage->execute(array($num));
-	$nbmessage=$reqNbmessage ->fetch();
-	return $nbmessage;
+function room_delete() {
+    $connect = connect();
+    $sql = "DELETE FROM room WHERE RoomID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);
 }
 
-function addTopic($selection,$titre,$pseudo,$date,$question){
-	$bdd=bdd();
-	$request2=$bdd-> query("SELECT* FROM categorie WHERE categorie.nom='$selection'");
-	$liste=$request2->fetch();
-	$idTopic=$liste['id']; /*pour l'id de la catégorie.*/
-
-	$reqPublier = $bdd->prepare('INSERT INTO topic(titre,author,date_topic,id_categorie,Question)  VALUES(?,?,?,"'.$idTopic.'",?)');
-    $reqPublier->execute(array($titre,$pseudo,$date,$question));
+function room_insert() {
+    $connect = connect();
+    $sql = "INSERT INTO room(RoomID,RoomName) VALUES(".$_GET['idr'].",'".$_POST["room_name"]."')";  
+    mysqli_query($connect, $sql);
 }
 
-
-
-/*partie topic.php*/
-function affichQuestion($selection,$numtopic){
-	$bdd=bdd();
-	$request=$bdd-> query("SELECT* FROM topic JOIN categorie ON topic.id_categorie=categorie.id WHERE categorie.nom='$selection' AND topic.id_topic='$numtopic'");
-	return $request;
-
-}
-
-function affichReponse($numtopic){
-	$bdd=bdd();
-	$reqReponse=$bdd -> query("SELECT * FROM message JOIN topic ON message.id_topic=topic.id_topic WHERE topic.id_topic='$numtopic' ORDER BY message.date_message");
-	return $reqReponse;
-
-}
-function addPost($id,$reponse,$pseudo,$date){
-     $bdd=bdd();
-    $reqPublier = $bdd->prepare('INSERT INTO message(reponse,pseudo,id_topic,date_message)  VALUES(?,?,"'.$id.'",?)');
-    $reqPublier->execute(array($reponse,$pseudo,$date));
-        }
-
-/*Page Expertise*/
-function catalogue(){    
-     $bdd=bdd();
-    $messages = $bdd->prepare('SELECT * FROM catalogue');
-    $messages->execute(array());
-    return $messages;
+function temp_edit($id,$temp) {
+    $connect = connect();
+    $sql = "UPDATE room SET RoomTempState ='$temp' WHERE RoomID ='$id'";  
+    if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
     } 
-
-function affichFAQ(){
-     $bdd=bdd();
-	$reqFAQ = $bdd->query('SELECT * FROM post');
-	return $reqFAQ;
 }
 
-function addQuestion($question,$reponse){
-     $bdd=bdd();
-    $reqPublier = $bdd->prepare('INSERT INTO post(Question,Reponse)  VALUES(?,?)');
-    $reqPublier->execute(array($question,$reponse));
-    return $reqPublier;
-    }
+function room_select() {
+    $connect = connect(); 
+    $sql = "SELECT * FROM room WHERE RoomID =".$_GET['idr'];  
+    $result = mysqli_query($connect, $sql);
+    return $result;
+}
+
+function lamp_update($id,$text) {
+	$connect = connect();
+	$sql = "UPDATE lamp SET LampName ='".$text."' WHERE LampID ='".$id."'";  
+ 	if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
+ 	}    
+}
+
+function lamp_delete() {
+	$connect = connect();
+    $sql = "DELETE FROM lamp WHERE LampID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);
+}
+
+function lamp_insert() {
+	$connect = connect();
+    $sql = "INSERT INTO lamp(LampName,RoomID) VALUES('".$_POST["lamp_name"]."',".$_GET['idr'].")";  
+    mysqli_query($connect, $sql); 
+}
+
+function lamp_select() {
+	$connect = connect(); 
+	$sql = "SELECT * FROM lamp WHERE RoomID =".$_GET['idr']." ORDER BY LampName ASC";  
+ 	$result = mysqli_query($connect, $sql);
+ 	return $result;
+}
+
+function window_update($id,$text) {
+	$connect = connect();
+	$sql = "UPDATE window SET WindowName ='$text' WHERE WindowID ='$id'";  
+ 	if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
+ 	}    	  
+}
+
+function window_delete() {
+	$connect = connect();
+    $sql = "DELETE FROM window WHERE WindowID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);  
+}
+
+function window_insert() {
+	$connect = connect();
+    $sql = "INSERT INTO window(WindowName,RoomID) VALUES('".$_POST["window_name"]."',".$_GET['idr'].")";  
+    mysqli_query($connect, $sql);  
+}
+
+function window_select() {
+	$connect = connect(); 
+	$sql = "SELECT * FROM window WHERE RoomID =".$_GET['idr']." ORDER BY WindowName ASC";  
+ 	$result = mysqli_query($connect, $sql);
+ 	return $result;
+}
+
+function captor_update($id,$text) {
+	$connect = connect();
+	$sql = "UPDATE captor SET CaptorName ='$text' WHERE CaptorID ='$id'";  
+ 	if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
+ 	}   
+}
+
+function captor_delete() {
+	$connect = connect();
+    $sql = "DELETE FROM captor WHERE CaptorID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);
+}
+
+function captor_insert() {
+	$connect = connect();
+    $sql = "INSERT INTO captor(CaptorName,RoomID) VALUES('".$_POST["captor_name"]."',".$_GET['idr'].")";  
+    mysqli_query($connect, $sql);
+}
+
+function captor_select() {
+	$connect = connect(); 
+	$sql = "SELECT * FROM captor WHERE RoomID =".$_GET['idr']." ORDER BY CaptorName ASC";  
+ 	$result = mysqli_query($connect, $sql);
+ 	return $result;
+}
+
+function temp_update($temp) {
+	$connect = connect();
+	$sql = "UPDATE room SET RoomTemp ='$temp' WHERE RoomID =".$_GET['idr'];
+	mysqli_query($connect, $sql);
+}
+
+
 ?>
+

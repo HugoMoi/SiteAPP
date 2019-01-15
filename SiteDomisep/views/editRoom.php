@@ -2,18 +2,20 @@
   <head>  
     <title></title>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+    <link rel="stylesheet" href="design/editRoom.css">
     <meta charset="utf-8"> 
   </head>  
   <body>
     <?php include("views/general.php"); ?>
-
-    <div id="live_room"></div> 
-    <div id="live_lamp"></div>
-    <div id="live_window"></div> 
-    <div id="live_captor"></div> 
+    <div id="live">
+      <div id="live_room" class="live room"></div> 
+      <div id="live_lamp" class="live lamp" ></div>
+      <div id="live_window" class="live window"></div> 
+      <div id="live_captor" class="live captor"></div> 
+    </div>
 
   </body>  
-</html>  
+</html>   
  <script> 
   $(document).ready(function(){  
     function fetch_room() {  

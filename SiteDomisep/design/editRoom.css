@@ -1,0 +1,57 @@
+#live {
+	position: absolute;
+  	left: 100px;
+  	top: 120px;
+  	right: 100px;
+}
+
+.live {
+	display: inline-grid;
+ 	margin: 30px;
+  position: relative;
+  width: 200px;
+}
+#top {
+  height:50px;
+  width: 100%;  
+  box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  position: relative;
+  background-color: #cfcfcf;
+  text-align: center;
+  height: 33px;
+  padding: 15px 0 0 0px;
+}
+#bot {
+  background-color: #f3f3f3;
+} 
+
+.room_name {
+	width: 150px;
+}
+.lamp_name {
+  width: 150px;
+}
+.window_name {
+  width: 150px;
+}
+.captor_name {
+  width: 150px;
+}
+
+#lamp_name {
+  font-style: italic;
+  color: #cfcfcf;
+}
+#window_name {
+  font-style: italic;
+  color: #cfcfcf;
+}
+#captor_name {
+  font-style: italic;
+  color: #cfcfcf;
+}
+
+
+td {
+  padding: 5px 5px 5px 10px;
+}

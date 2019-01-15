@@ -119,6 +119,10 @@
 #options div {
   position: relative;
 }
+#parameters {
+  position: absolute;
+  top: 10px;
+}
 .switch {
   position: absolute;
   display: block;

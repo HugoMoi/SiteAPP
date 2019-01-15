@@ -1,0 +1,45 @@
+.categorie{
+	padding: 37px 10px 18px 11px;
+	background-color: #3d3b3ba6;
+	width: 200px;
+	text-align: center;
+	margin-bottom: 10px;
+	float: left;
+	margin-left: 10px;
+	font-family: Times, Times New Roman, serif;
+	color: white;
+	text-decoration: none;
+	border-radius: 3px;
+	
+}
+h2{
+	
+	padding-left: 23%;
+	font-family: Times, Times New Roman, serif;
+	padding: 
+	margin-left:°
+	margin-right: ;
+}
+.totalCategorie{
+	width: 55%;
+	margin-left: 40%;
+	margin-right: auto;
+	float: right;
+}
+.categorie:hover{
+	background-color: #850d17;
+}
+/*fond */
+body{
+    background-image:url(../image/mur1.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    image-rendering: optimizeQuality;
+    backface-visibility: visible;
+ 
+}
+
+h1{
+	font-family: Times, Times New Roman, sans-serif;
+}

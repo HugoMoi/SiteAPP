@@ -1,0 +1,93 @@
+/*css du topic*/
+
+.probleme{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding-left: 10px;
+	background-color: #76707087;
+	font-family: Times, Times New Roman,sans-serif;
+
+}
+.question{
+	margin-left: 25%;
+	font-size: 1.3em;
+}
+.probleme h2{
+	border-bottom: 1px solid black;
+	margin-right: 30px;
+	margin-left: 30px;
+	border-top-left-radius: 2px;
+	border-top-right-radius:2px;
+}
+/*css des messages*/
+.message{
+	border: 1px solid #EEEE;
+	font-family: Times, Times New Roman,sans-serif;
+
+
+}
+.message:hover{
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+/*fond */
+.enemble{
+	background-color: white;
+	width: 84%;
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+	margin-left: auto;
+	margin-right: auto;
+}
+.gauche{
+	padding-left: 7px;
+	padding-top: 10px;
+	float: left;
+}
+.droite{
+	margin-left: 15%;
+	padding:45px 20px 40px 20px;
+	font-size: 1.3em;
+
+}
+h1{
+	font-family:  Bookman, URW Bookman L, serif;
+	margin: 23px;
+	text-align: center;
+	
+}
+.publier{
+		display: block;
+	background-color: black;
+	color: white;
+	border:none;
+	margin-right: auto;
+	margin-left: auto;
+	width: 100px;
+	height: 30px;
+	border-radius: 100px;
+	margin-top: 10px;
+}
+
+.adminpart{
+	background-color: #a49e9e8f;
+	border-radius: 3px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+
+.question{
+	
+		border-bottom: 2px;
+}
+.label{
+	margin:0px; 
+	padding:0px;
+}
+
+.droite{
+	padding-top: 5px;
+	margin-top: 16px;
+}

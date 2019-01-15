@@ -1,0 +1,147 @@
+body{
+    margin: 0;
+}
+h1{/*h1 du bandeau*/
+	color: white;
+	text-align: center;
+	margin-top:0px;
+	padding-top: 20px;
+	font-size: 6em;
+
+}
+/*texte de description*/
+.description{
+	color: white;
+	text-align: center;
+	margin:5% 17%;
+	font-size: 1.5em;
+}
+
+.fond{ /*bandeau avec l'image*/
+	width: 100%;
+	height: 450px;
+    background-image:url(../Image/Photo_Expertise.png);
+    background-size:cover;
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+}
+
+h2{
+	text-align: center;
+	font-size: 2em;
+}
+
+/*2e partie de la page*/
+.catalogue{
+	margin-top: 0px;
+	background-image: url(../Image/Expertise2.png);
+    background-repeat:no-repeat; 
+    background-attachment:fixed;
+    background-position: right;
+
+}
+
+
+.capteur h3{
+        display: block;
+        color: white;
+        position: relative;
+        padding: 7px 10px;
+        padding-bottom:5px; 
+        border-bottom: 1px solid black;
+        position: center;
+        margin-bottom: 0px;
+        padding-top: 3px;
+        margin-top: 0;
+        background-color: #2b3272;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+}
+
+footer{
+        margin-bottom: 10px; 
+        margin-top: 23%;
+        text-align: center;
+}
+
+/*bandeau lorsqu'il est réduit*/
+.bandeau{
+	border-radius: 10px;
+	width: 220px;
+	height: 270px;
+	background-color: #b6b6bd;
+   	transition: width 0.6s, height 1.5s;
+   	margin-left: 1%;
+   	margin-bottom: 1%;
+
+}
+/*bandeau lorsqu'il est déroulé*/
+.bandeau:hover{
+	width: 99%;
+	}
+/*rendre le texte visible pour plus le style*/
+.bandeau:hover .text{
+	visibility: visible;
+
+}
+
+.image{
+	border-radius: 10px;
+	float: left;
+	display: block;
+	margin-left: 7%;
+	margin-right: auto;
+	height: auto;
+	width: 180px;
+	transition: width 2s;
+}
+
+.text{
+	margin-left: 24%;
+	margin-top: 0%;
+	padding-top: 1%;
+	padding-right: 9%;
+	color: white;
+	padding-left: 10px;
+	visibility: hidden;
+}
+
+@media only screen and (max-width:750px){
+        .fond{
+        		height: 650px;
+
+        }
+        h1{
+        	font-size: 5em;
+        }
+        .description{
+        	margin:3% 10%;
+        	text-align: left;
+
+        }
+
+        .bandeau{
+        	   transition: none;
+        	   margin-left: auto;
+        	   margin-right: auto;
+        	   width: 85%;
+
+        }
+        .image{
+        		float: none;
+
+        }
+        .bandeau:hover{
+			height: 70%;
+			width: 100%;
+		}
+		.text{
+			padding-bottom: 4%;
+			margin-left: 5%;
+
+
+		}
+
+
+}

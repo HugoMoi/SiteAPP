@@ -18,9 +18,9 @@ include("General.php");
                <table>
                
                <tr>
-                  <td align="right">
-                  <label>Pseudo :</label>
-                  <input type="text" name="newpseudo" placeholder="Pseudo" value="<?php echo $_SESSION['pseudo']; ?>" /><br /><br />
+                  <td align="center">
+                  <label>Pseudo : <?php echo $_SESSION['pseudo']; ?></label><br /><br />
+
 
                   </td>
                </tr>
@@ -41,6 +41,24 @@ include("General.php");
                   <td align="right">
                   <label>Confirmation - mot de passe :</label>
                   <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br /><br />
+               </td>
+            </tr>
+            <tr>
+                  <td align="right">
+                  <label>Adresse :</label>
+                  <input type="text" name="newadresse" placeholder="Adresse"/><br /><br />
+               </td>
+            </tr>
+            <tr>
+                  <td align="right">
+                  <label>Code Postal :</label>
+                  <input type="number" name="newcode" placeholder="Code Postal"/><br /><br />
+               </td>
+            </tr>
+            <tr>
+                  <td align="right">
+                  <label>Ville :</label>
+                  <input type="text" name="newville" placeholder="Ville"/><br /><br />
                </td>
             </tr>
             </table>

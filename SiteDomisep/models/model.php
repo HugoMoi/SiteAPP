@@ -339,7 +339,7 @@ function AddUser($pseudo,$mail,$mdp,$key,$nom,$prenom,$adresse,$code,$ville){
 	$insertmbr->execute(array($pseudo,$mail,$mdp,$key,$nom,$prenom,$adresse,$code,$ville));
 }
 function AffichEditProfil($VerifId){
-		$bdd = bdd();
+	$bdd = bdd();
 	$requser = $bdd->prepare("SELECT * FROM membres WHERE id = ?");
    	$requser->execute(array($VerifId));
    	$user = $requser->fetch();
@@ -353,6 +353,24 @@ function AffichEditProfil($VerifId){
       $newmail = htmlspecialchars($_POST['newmail']);
       $insertmail = $bdd->prepare("UPDATE membres SET mail = ? WHERE id = ?");
       $insertmail->execute(array($newmail, $_SESSION['id']));
+      header('Location: index.php?action=profil');
+   }
+   if(isset($_POST['newadresse']) AND !empty($_POST['newadresse']) AND $_POST['newadresse'] != $user['adresse']) {
+      $newadresse = htmlspecialchars($_POST['newadresse']);
+      $insertadresse = $bdd->prepare("UPDATE membres SET adresse = ? WHERE id = ?");
+      $insertadresse->execute(array($newadresse, $_SESSION['id']));
+      header('Location: index.php?action=profil');
+   }
+   if(isset($_POST['newcode']) AND !empty($_POST['newcode']) AND $_POST['newcode'] != $user['codepostal']) {
+      $newcode = htmlspecialchars($_POST['newcode']);
+      $insertcode = $bdd->prepare("UPDATE membres SET codepostal = ? WHERE id = ?");
+      $insertcode->execute(array($newcode, $_SESSION['id']));
+      header('Location: index.php?action=profil');
+   }
+   if(isset($_POST['newville']) AND !empty($_POST['newville']) AND $_POST['newville'] != $user['ville']) {
+      $newville = htmlspecialchars($_POST['newville']);
+      $insertville = $bdd->prepare("UPDATE membres SET ville = ? WHERE id = ?");
+      $insertville->execute(array($newville, $_SESSION['id']));
       header('Location: index.php?action=profil');
    }
    if(isset($_POST['newmdp1']) AND !empty($_POST['newmdp1']) AND isset($_POST['newmdp2']) AND !empty($_POST['newmdp2'])) {

@@ -26,6 +26,12 @@ if(isset($_SESSION['id']) AND $_SESSION['id']>0)
 			<br />
 			Mail = <?php echo $userinfo ['mail']; ?>
 			<br />
+			Adresse = <?php echo $userinfo ['adresse']; ?>
+			<br />
+			Code Postal = <?php echo $userinfo ['codepostal']; ?>
+			<br />
+			Ville = <?php echo $userinfo ['ville']; ?>
+			<br />
 
 		<?php
 		if(isset($_SESSION['id']) AND $userinfo['id']==$_SESSION['id'])

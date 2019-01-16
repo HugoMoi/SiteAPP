@@ -1,15 +1,17 @@
 <?php 
 include("views/General.php");
-$bdd = bdd();
+
 
 	if (!empty($_SESSION['id'])) {
-	$rooms = $bdd->query('SELECT * FROM room WHERE MemberID="'.$_SESSION['id'].'"');
+		$bdd = bdd();
+		$rooms = $bdd->query('SELECT * FROM room WHERE MemberID="'.$_SESSION['id'].'"');
  ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Maison</title>
 		<link rel="stylesheet" href="design/maison.css">
+		<link rel="stylesheet" href="design/vertical.css">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
@@ -18,7 +20,7 @@ $bdd = bdd();
 
 		
 		<div id="content">
-			<?php while ($room = $rooms->fetch()) { 
+			<?php foreach($rooms as $room) { 
 				$idr= $room['RoomID'];
 			?>
 
@@ -37,7 +39,7 @@ $bdd = bdd();
 					<div id="control">
 
 						<?php $lamps = lamps($idr);
-						while ($lamp= $lamps->fetch()) {
+						foreach($lamps as $lamp) {
 							$idl = $lamp['LampID'];
 							$statel = $lamp['LampCondition'];
 						?>
@@ -55,7 +57,7 @@ $bdd = bdd();
 
   						<?php }
 						$windows = windows($idr);
-						while ($window = $windows->fetch()) { 
+						foreach ($windows as $window) { 
 							$idw = $window['WindowID'];
 							$statew = $window['WindowCondition'];
 						?>
@@ -77,6 +79,17 @@ $bdd = bdd();
 						<div id="parameters">
 							<a href="index.php?action=editRoom&idr=<?= $idr ?>"><img style="width: 20px;height: auto;" src="image/option.png"></a>
 						</div>
+						<?php
+						if(isset(($room['RoomTempState']))) { 
+							$roomTempReq = $room['RoomTempReq'];
+							echo "
+						<div class='range-slider'>
+        					<div class='thermometer'></div>
+				            <input class='vertical' data-id='".$room["RoomID"]."' type='range' step='0.5' value='".$roomTempReq."' min='10' max='30'>
+				            <div class='bulb'></div>
+				            <p class='print'><span id='print".$room["RoomID"]."'></span>°C</p>
+				        </div>
+				    	"; } ?>
 					</div>
 				</div>	
 			</div>
@@ -84,6 +97,7 @@ $bdd = bdd();
 			<div id="addRoom">
   				<a href="index.php?action=addRoom" id="add"><img class="plusBouton" src="image/plus.png"></a>
   			</div>
+  			<p id="test"></p>
 		</div>
 	<?php }
 	else{
@@ -92,3 +106,12 @@ $bdd = bdd();
 	}?>
 	</body>
 </html>
+<script>
+	$(document).on('load', '.vertical', function(){  
+	    var id = $(this).data("id");  
+	    var slider = $(this).value;
+	    var output = document.getElementById("test");
+		output.innerHTML = slider.value;
+	}); 
+	
+</script>

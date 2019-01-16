@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 15 jan. 2019 à 16:53
+-- Généré le :  mer. 16 jan. 2019 à 14:54
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `captor` (
 --
 
 INSERT INTO `captor` (`CaptorID`, `CaptorName`, `RoomID`) VALUES
-(1, 'zzz', 1);
+(1, 'Capteur de LuminositÃ©', 1);
 
 -- --------------------------------------------------------
 
@@ -150,20 +150,20 @@ INSERT INTO `dbstatistique` (`id_stat`, `date`, `temperature`, `humite`, `id_cli
 DROP TABLE IF EXISTS `lamp`;
 CREATE TABLE IF NOT EXISTS `lamp` (
   `LampID` int(11) NOT NULL AUTO_INCREMENT,
-  `LampCondition` tinyint(1) DEFAULT NULL,
+  `LampCondition` tinyint(1) DEFAULT '0',
   `LampName` varchar(256) DEFAULT NULL,
   `RoomID` int(11) DEFAULT NULL,
   PRIMARY KEY (`LampID`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lamp`
 --
 
 INSERT INTO `lamp` (`LampID`, `LampCondition`, `LampName`, `RoomID`) VALUES
-(1, 0, 'Chevet Gauche', 1),
-(2, 0, 'Chevet Droit', 1),
-(3, 1, 'Dressing', 1),
+(1, 1, 'Chevet Gauche', 1),
+(2, 1, 'Chevet Droit', 1),
+(3, 0, 'Dressing', 1),
 (4, 0, 'Plafond', 2),
 (5, 1, 'Lit 1', 2),
 (6, 0, 'Lit 2', 2),
@@ -182,11 +182,22 @@ INSERT INTO `lamp` (`LampID`, `LampCondition`, `LampName`, `RoomID`) VALUES
 (19, 0, 'Lumière', 8),
 (20, 0, 'Lumière', 9),
 (21, 0, 'Lumière', 10),
-(26, NULL, 'chevet', NULL),
-(25, NULL, 'dd', NULL),
-(27, NULL, 'ss', NULL),
-(28, NULL, 'azazz', 1),
-(29, NULL, 'az', NULL);
+(34, 0, 'Lustre', NULL),
+(33, 0, 'Lustre', NULL),
+(32, 0, 'Lustre', NULL),
+(31, 0, 'Lustre', NULL),
+(29, NULL, 'az', NULL),
+(30, 0, 'Lustre', NULL),
+(35, 0, 'Lustre', NULL),
+(36, 0, 'Lustre', NULL),
+(37, 0, 'Lustre', NULL),
+(38, 0, 'Lustre', NULL),
+(39, 0, 'Lustre', NULL),
+(40, 0, 'Lustre', NULL),
+(41, 0, 'Lustre', NULL),
+(42, 0, 'Lustre', NULL),
+(43, 0, 'Lustre', NULL),
+(44, 0, 'Lustre', 12);
 
 -- --------------------------------------------------------
 
@@ -311,25 +322,26 @@ CREATE TABLE IF NOT EXISTS `room` (
   `RoomName` varchar(256) NOT NULL,
   `RoomTempState` int(11) NOT NULL DEFAULT '0',
   `RoomTemp` int(11) DEFAULT NULL,
-  `MemberID` int(11) NOT NULL,
+  `MemberID` int(11) DEFAULT NULL,
+  `RoomTempReq` int(11) NOT NULL DEFAULT '20',
   PRIMARY KEY (`RoomID`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `room`
 --
 
-INSERT INTO `room` (`RoomID`, `RoomName`, `RoomTempState`, `RoomTemp`, `MemberID`) VALUES
-(1, 'Chambres Parents', 0, 18, 34),
-(2, 'Chambres Enfants', 0, 20, 34),
-(3, 'Chambres Invités', 0, 19, 34),
-(4, 'Salle de Bain Parents', 0, NULL, 0),
-(5, 'Salle de Bain Enfants', 0, NULL, 0),
-(6, 'Séjour', 0, 20, 0),
-(7, 'Bureau', 0, NULL, 0),
-(8, 'Toilette', 0, NULL, 0),
-(9, 'Buanderie', 0, NULL, 0),
-(10, 'Hall', 0, NULL, 0);
+INSERT INTO `room` (`RoomID`, `RoomName`, `RoomTempState`, `RoomTemp`, `MemberID`, `RoomTempReq`) VALUES
+(1, 'Chambres Parents', 1, 18, 34, 0),
+(2, 'Chambres Enfants', 0, 20, 34, 0),
+(3, 'Chambres Invités', 0, 19, 34, 0),
+(12, 'Salon', 1, NULL, 34, 0),
+(5, 'Salle de Bain Enfants', 0, NULL, 0, 0),
+(6, 'Séjour', 0, 20, 0, 0),
+(7, 'Bureau', 0, NULL, 0, 0),
+(8, 'Toilette', 0, NULL, 0, 0),
+(9, 'Buanderie', 0, NULL, 0, 0),
+(10, 'Hall', 0, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -381,15 +393,15 @@ CREATE TABLE IF NOT EXISTS `window` (
   `WindowName` varchar(256) DEFAULT NULL,
   `RoomID` int(11) DEFAULT NULL,
   PRIMARY KEY (`WindowID`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `window`
 --
 
 INSERT INTO `window` (`WindowID`, `WindowCondition`, `WindowName`, `RoomID`) VALUES
-(2, 0, 'Fenêtre 1', 2),
-(3, 1, 'Fenêtre 2', 2),
+(2, 0, 'FenÃªtre 1', 2),
+(3, 1, 'FenÃªtre 2', 2),
 (4, 0, 'Fenêtre', 3),
 (5, 0, 'Fenêtre', 4),
 (6, 0, 'Fenêtre', 5),
@@ -397,7 +409,37 @@ INSERT INTO `window` (`WindowID`, `WindowCondition`, `WindowName`, `RoomID`) VAL
 (8, 0, 'Baie Vitrée', 6),
 (9, 0, 'Fenêtre', 7),
 (10, 0, 'Fenêtre', 10),
-(12, NULL, 'FenÃªtre', 1);
+(12, NULL, 'FenÃªtre', 1),
+(13, NULL, 'Baie Vitrée', NULL),
+(14, NULL, 'Balcon', NULL),
+(15, NULL, 'Baie Vitrée', NULL),
+(16, NULL, 'Balcon', NULL),
+(17, NULL, 'Baie Vitrée', NULL),
+(18, NULL, 'Balcon', NULL),
+(19, NULL, 'Baie Vitrée', NULL),
+(20, NULL, 'Balcon', NULL),
+(21, NULL, 'Baie Vitrée', NULL),
+(22, NULL, 'Balcon', NULL),
+(23, NULL, 'Baie Vitrée', NULL),
+(24, NULL, 'Balcon', NULL),
+(25, NULL, 'Baie Vitrée', NULL),
+(26, NULL, 'Balcon', NULL),
+(27, NULL, 'Baie Vitrée', NULL),
+(28, NULL, 'Balcon', NULL),
+(29, NULL, 'Baie Vitrée', NULL),
+(30, NULL, 'Balcon', NULL),
+(31, NULL, 'Baie Vitrée', NULL),
+(32, NULL, 'Balcon', NULL),
+(33, NULL, 'Baie Vitrée', NULL),
+(34, NULL, 'Balcon', NULL),
+(35, NULL, 'Baie Vitrée', NULL),
+(36, NULL, 'Balcon', NULL),
+(37, NULL, 'Baie Vitrée', NULL),
+(38, NULL, 'Balcon', NULL),
+(39, NULL, 'Balcon', NULL),
+(40, NULL, 'Balcon', NULL),
+(41, NULL, 'Baie Vitrée', 12),
+(42, NULL, 'Balcon', 12);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

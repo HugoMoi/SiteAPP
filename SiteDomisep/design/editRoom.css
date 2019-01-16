@@ -25,31 +25,15 @@
   background-color: #f3f3f3;
 } 
 
-.room_name {
+.room_name, .lamp_name, .window_name, .captor_name{
 	width: 150px;
 }
-.lamp_name {
-  width: 150px;
-}
-.window_name {
-  width: 150px;
-}
-.captor_name {
-  width: 150px;
+
+#lamp_name, #window_name, #captor_name{
+  font-style: italic;
+  color: #cfcfcf;
 }
 
-#lamp_name {
-  font-style: italic;
-  color: #cfcfcf;
-}
-#window_name {
-  font-style: italic;
-  color: #cfcfcf;
-}
-#captor_name {
-  font-style: italic;
-  color: #cfcfcf;
-}
 
 
 td {

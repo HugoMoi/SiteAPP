@@ -123,24 +123,31 @@ function actionWindow() {
     } 
 }
 function addRoom() {
+  include("views/General.php");
+  if (!empty($_SESSION['id'])) {
     if (isset($_POST['roomName'])) {
-        $roomTemp = 0;
-        roomTemp($roomTemp);
-        insertRoom($roomTemp);
+        $roomTempState = 0;
+        roomTemp($roomTempState);
+        $idm = $_SESSION['id'];
+        insertRoom($roomTempState,$idm);
         header('Location: index.php?action=maison');
     }
     include "views/addRoom.php";
+  }
+  else {
+    header('Location:index.php?action=connexion');
+  }
 }
 function editRoom() {
   $idr = (int) $_GET['idr'];
   include "views/editRoom.php";
 }
 
-function roomTemp($roomTemp) {
+function roomTemp($roomTempState) {
     if (empty($_POST['roomTemp'])) {
-        $RoomTempState = 0;
+        $roomTempState = 0;
     }
-    return $roomTemp;
+    return $roomTempState;
 }
 
 function room_add() {
@@ -164,7 +171,7 @@ function room_fetch() {
       $output .= '
         <tr>
           <td class="room_name" data-id1="'.$row["RoomID"].'" contenteditable>'.$row["RoomName"].'</td>   
-          <td><a href="index.php?=home"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room">x</button></a></td>  
+          <td><a href="index.php?=maison"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room">x</button></a></td>  
         </tr>';   
     }
     else {  
@@ -354,8 +361,9 @@ function captor_edit() {
 }
 
 function thermometer() {
-  $temp = $_POST["temp"];  
-  temp_update($temp);
+  $roomTempReq = "liieirf";
+  /*$temp = $_POST["temp"];  
+  temp_update($temp);*/
 }
 
 

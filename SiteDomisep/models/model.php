@@ -98,6 +98,7 @@ function addQuestion($question,$reponse){
 
 /*Lucas*/
 
+
 function lamps(int $idr) {
 	$bdd = bdd();
 	$lamps = $bdd->prepare('SELECT * FROM lamp WHERE RoomID=?');
@@ -152,10 +153,10 @@ function onw(int $getidw) {
     $onw->execute(array($getidw));
     return $onw;
 }
-function insertRoom($roomTemp) {
+function insertRoom($roomTempState,$idm) {
     $bdd = bdd();
-    $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTemp`) VALUES (:RoomName,:RoomTemp)");
-    $req->execute(['RoomName' => $_POST['roomName'],'RoomTemp'=>$roomTemp]);
+    $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTempState`,MemberID) VALUES (? , ?, ?)");
+    $req->execute(array($_POST['roomName'],$roomTempState,$idm));
     
     $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName");
 	$reqId->execute(['RoomName' => $_POST['roomName']]);		

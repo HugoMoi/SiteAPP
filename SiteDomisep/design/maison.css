@@ -59,7 +59,7 @@
 #temp {
   width: 40px;
 }
-#box  input{
+#box input[type=checkbox] {
   display: none;
 } 
 #bot {
@@ -114,7 +114,7 @@
 }
 #options {
   display: inline-grid;
-  width: 10%;
+  margin-bottom: 30px;
 }
 #options div {
   position: relative;
@@ -122,6 +122,7 @@
 #parameters {
   position: absolute;
   top: 10px;
+  left: 6px;
 }
 .switch {
   position: absolute;

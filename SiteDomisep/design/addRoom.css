@@ -1,0 +1,108 @@
+#content {
+	position: absolute;
+  	left: 100px;
+  	top: 120px;
+  	right: 100px;
+}
+
+
+#room, #lamp, #window, #captor {
+	display: inline-grid;
+ 	margin: 30px;
+  	position: relative;
+  	width:200px;
+}
+
+#top {
+  box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  position: relative;
+  background-color: #cfcfcf;
+  text-align: center;
+  height: 33px;
+  padding: 15px 5px 5px 5px;
+}
+
+
+#nbLamp, #nbWindow, #nbCaptor {
+	width: 18px;
+}
+
+#bot, #newLamps, #newWindows, #newCaptors {
+  background-color: #f3f3f3;
+  padding: 15px 5px 5px 5px;
+} 
+
+#bot {
+	height: 210px;
+	position: relative;
+}
+#cercle {
+	position: absolute;
+	bottom:10px;
+	left: 65px;
+	width: 80px;
+}
+#submit {
+	text-align: center;
+	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  	position: relative;
+    background-color: #cfcfcf;
+	color: white;
+	border: none;
+	border-radius: 35px;
+	background: black;
+	text-decoration: none;
+	width: 70px;
+  	height: 70px; 
+	
+}
+
+.switch {
+  position: absolute;
+  display: block;
+  left: 100px;
+  bottom: 105px;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 13px;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  border-radius: 50%;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4cd964;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}

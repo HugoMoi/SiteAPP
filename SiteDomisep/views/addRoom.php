@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<title>Maison</title>
@@ -7,49 +6,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<?php include("views/General.php"); ?>
 
 		<div id="content">
 			<form method="post" action="index.php?action=addRoom">
-        		<p>
-            		<label>
-                		Nom de la pièce :
-                		<input type="text" name="roomName" required>
-            		</label>
-        		</p>
-        
-        		<p>
-           			<label> Gestion de la température ?
-               			<input type="checkbox" name="roomTemp"> 
-            		</label>
-        		</p>
-        		<p>
-        			<label> Nombres de lampes :
-        				<input type="text" id="nbLamp" oninput="addLamps()" name="nbLamp" value=""><br/>
-    					<div id="newLamps">
-    					</div>
-    				</label>
-    			</p>
-    			<p>
-    				<label> Nombres de fenêtres :
-        				<input type="text" id="nbWindow" oninput="addWindows()" name="nbWindow" value=""><br/>
-    					<div id="newWindows">
-    					</div>
-    				</label>
-    			</p>
-    			<p>
-    				<label> Nombres de capteurs :
-        				<input type="text" id="nbCaptor" oninput="addCaptors()" name="nbCaptor" value=""><br/>
-    					<div id="newCaptors">
-    					</div>
-    				</label>
-    			</p>
-        		<label>
-        			<input type="submit" value="Ajouter">
-        		</label>
+        		<div id="room">
+                    <div id="top"> Nouvelle pièce </div>
+                	<div id="bot">
+                        <p>Nom de la pièce :</p>
+                	   <input type="text" name="roomName" placeholder="Nom de la nouvelle pièce" required>
+           		       <p>Chauffage ?
+               		       <label class="switch">
+                                <input type="checkbox" name="roomTemp">
+                                <span class="slider"></span>
+                            </label>
+                        </p> 
+                    </div>
+                    <div id="cercle">
+                        <input type="submit" id="submit" value="Ajouter">
+                    </div>
+        		</div>
+        		<div id="lamp">
+                    <div id="top"> 
+                        Nombres de lampes :
+    				    <input type="text" id="nbLamp" oninput="addLamps()" name="nbLamp" value="">
+                    </div>
+					<div id="newLamps"></div>
+    			</div>
+    			<div id="window">
+    				<div id="top"> Nombres de fenêtres :
+        				<input type="text" id="nbWindow" oninput="addWindows()" name="nbWindow" value="">
+    				</div>
+                    <div id="newWindows"></div>
+    			</div>
+    			<div id="captor">
+    				<div id="top"> Nombres de capteurs :
+        				<input type="text" id="nbCaptor" oninput="addCaptors()" name="nbCaptor" value="">
+    				</div>
+                    <div id="newCaptors"></div>
+    			</div>
     		</form>
 		</div>
 	</body>
+</html>
 <script>
 function addLamps(){
             var number = document.getElementById("nbLamp").value;
@@ -106,4 +104,3 @@ function addCaptors(){
 
 
 </script>
-</html>

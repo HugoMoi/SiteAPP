@@ -8,7 +8,7 @@
 	<body>
         <div class="range-slider">
         	<div class="thermometer"></div>
-            <input class="vertical" id="tempValue" type="range" step="0.5" value="0" min="0" max="40">
+            <input class="vertical" id="tempValue" type="range" step="0.5" value="20" min="10" max="30">
             <div class="bulb"></div>
             <p class="print"><span id="print"></span>°C</p>
         </div> 
@@ -20,5 +20,19 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
 	output.innerHTML = this.value;
 }
+
+/*function thermos(value) {  
+    $.ajax({  
+        url:"index.php?action=thermometer",  
+        method:"POST",  
+        data:{value:value},  
+        dataType:"text",  
+        success:function(data){}  
+    });  
+}  
+$(document).on('change', 'vertical', function(){  
+  var value = $(this).value; 
+  thermos(value);  
+});*/
 </script>
 </html>

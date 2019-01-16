@@ -1,3 +1,12 @@
+body {
+  width: 100%;
+  height: 400px;
+  background-image:url(../image/deco.jpeg);
+  background-size:cover;    
+  background-repeat:no-repeat; 
+  background-attachment:fixed;
+}
+
 #content {
 	position: absolute;
 	left: 10px;
@@ -19,7 +28,7 @@
 }
 #add {
   height:50px;
-  width: calc(100% - 2px);  
+  width: 100%;  
   /*border: 1px solid black;*/
   box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
   position: relative;
@@ -28,7 +37,7 @@
 
 #top {
   height:50px;
-	width: calc(100% - 2px);	
+	width: 100%;	
 	/*border: 1px solid black;*/
 	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
   position: relative;
@@ -64,7 +73,7 @@
 } 
 #bot {
   /*display: none;*/
-  background-color: #f3f3f3;
+  background-color: rgba(243, 243, 243, 0.8);
 } 
 #box input[type=checkbox]:checked~#bot {
         display: block;
@@ -123,6 +132,10 @@
   position: absolute;
   top: 10px;
   left: 6px;
+}
+
+.setting_btn {
+  color: black;
 }
 .switch {
   position: absolute;
@@ -183,11 +196,11 @@ input:checked + .slider:before {
   -ms-transform: translateX(13px);
   transform: translateX(13px);
 }
-.plusBouton{
-  width:90%;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
+.plus_btn{
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  color: black;
 }
 
 @media all and (max-width:1100px) {

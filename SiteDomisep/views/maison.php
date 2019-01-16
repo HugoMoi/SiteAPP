@@ -12,6 +12,7 @@ include("views/General.php");
 		<title>Maison</title>
 		<link rel="stylesheet" href="design/maison.css">
 		<link rel="stylesheet" href="design/vertical.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
@@ -77,7 +78,7 @@ include("views/General.php");
 					</div>
 					<div id="options">
 						<div id="parameters">
-							<a href="index.php?action=editRoom&idr=<?= $idr ?>"><img style="width: 20px;height: auto;" src="image/option.png"></a>
+							<a href="index.php?action=editRoom&idr=<?= $idr ?>"><i class="material-icons setting_btn">settings</i></a>
 						</div>
 						<?php
 						if(isset(($room['RoomTempState']))) { 
@@ -95,7 +96,7 @@ include("views/General.php");
 			</div>
 			<?php } ?>
 			<div id="addRoom">
-  				<a href="index.php?action=addRoom" id="add"><img class="plusBouton" src="image/plus.png"></a>
+  				<a href="index.php?action=addRoom" id="add"><i class="material-icons plus_btn">add</i></a>
   			</div>
   			<p id="test"></p>
 		</div>

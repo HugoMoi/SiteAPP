@@ -171,14 +171,14 @@ function room_fetch() {
       $output .= '
         <tr>
           <td class="room_name" data-id1="'.$row["RoomID"].'" contenteditable>'.$row["RoomName"].'</td>   
-          <td><a href="index.php?=maison"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room">x</button></a></td>  
+          <td><a href="index.php?action=maison"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room"><i class="material-icons">delete</i></button></a></td>  
         </tr>';   
     }
     else {  
       $output .= '
             <tr>  
               <td class="noName" id="room_name" contenteditable>Pas de nom</td>    
-              <td><button type="button" name="btn_add_room" id="btn_add_room">+</button></td>  
+              <td><button type="button" name="btn_add_room" id="btn_add_room"><i class="material-icons">add</i></button></td>  
             </tr>';
     }
     $roomTempText = "";
@@ -188,7 +188,12 @@ function room_fetch() {
     $output .= '        
           <tr>      
             <td>Température ?</td>   
-            <td><input type="checkbox" data-id3="'.$row["RoomID"].'" '.$roomTempText.' class="btn_temp"></td>  
+            <td>
+              <label class="switch">
+                <input type="checkbox" data-id3="'.$row["RoomID"].'" '.$roomTempText.' class="btn_temp">
+                <span class="slider"></span>
+              </label>
+            </td>  
           </tr>
         </table>
         </div>  
@@ -232,7 +237,7 @@ function lamp_fetch() {
            $output .= '  
                 <tr>    
                      <td class="lamp_name" data-id1="'.$row["LampID"].'" contenteditable>'.$row["LampName"].'</td>   
-                     <td><button type="button" name="btn_delete_lamp" data-id2="'.$row["LampID"].'" class="btn_delete_lamp">x</button></td>  
+                     <td><button type="button" name="btn_delete_lamp" data-id2="'.$row["LampID"].'" class="btn_delete_lamp"><i class="material-icons">delete</i></button></td>  
                 </tr>  
            ';  
       }  
@@ -246,7 +251,7 @@ function lamp_fetch() {
   $output .='  
            <tr>  
                 <td id="lamp_name" contenteditable>Nouvelle Lampe</td>    
-                <td><button type="button" name="btn_add_lamp" id="btn_add_lamp">+</button></td>  
+                <td><button type="button" name="btn_add_lamp" id="btn_add_lamp"><i class="material-icons">add</i></button></td>  
            </tr>
            </table>
         </div>  
@@ -282,7 +287,7 @@ function window_fetch() {
            $output .= '  
                 <tr>    
                      <td class="window_name" data-id1="'.$row["WindowID"].'" contenteditable>'.$row["WindowName"].'</td>   
-                     <td><button type="button" name="btn_delete_window" data-id2="'.$row["WindowID"].'" class="btn_delete_window">x</button></td>  
+                     <td><button type="button" name="btn_delete_window" data-id2="'.$row["WindowID"].'" class="btn_delete_window"><i class="material-icons">delete</i></button></td>  
                 </tr>  
            ';  
       }  
@@ -296,7 +301,7 @@ function window_fetch() {
   $output .='  
            <tr>  
                 <td id="window_name" contenteditable>Nouvelle Fenêtre</td>    
-                <td><button type="button" name="btn_add_window" id="btn_add_window">+</button></td>  
+                <td><button type="button" name="btn_add_window" id="btn_add_window"><i class="material-icons">add</i></button></td>  
            </tr>
            </table>
         </div> 
@@ -332,7 +337,7 @@ function captor_fetch() {
            $output .= '  
                 <tr>    
                      <td class="captor_name" data-id1="'.$row["CaptorID"].'" contenteditable>'.$row["CaptorName"].'</td>   
-                     <td><button type="button" name="btn_delete_captor" data-id2="'.$row["CaptorID"].'" class="btn_delete_captor">x</button></td>  
+                     <td><button type="button" name="btn_delete_captor" data-id2="'.$row["CaptorID"].'" class="btn_delete_captor"><i class="material-icons">delete</i></button></td>  
                 </tr>  
            ';  
       }  
@@ -346,7 +351,7 @@ function captor_fetch() {
   $output .='  
            <tr>  
                 <td id="captor_name" contenteditable>Nouveau Capteur</td>    
-                <td><button type="button" name="btn_add_captor" id="btn_add_captor">+</button></td>  
+                <td><button type="button" name="btn_add_captor" id="btn_add_captor"><i class="material-icons">add</i></button></td>  
            </tr>
            </table>
         <div> 

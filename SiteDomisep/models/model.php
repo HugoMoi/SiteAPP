@@ -158,8 +158,8 @@ function insertRoom($roomTempState,$idm) {
     $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTempState`,MemberID) VALUES (? , ?, ?)");
     $req->execute(array($_POST['roomName'],$roomTempState,$idm));
     
-    $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName");
-	$reqId->execute(['RoomName' => $_POST['roomName']]);		
+    $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName AND MemberID = :MemberID");
+	$reqId->execute(['RoomName' => $_POST['roomName'],'MemberID' => $idm]);		
 	$roomId= $reqId->fetch();
 	$nbLamp = $_POST['nbLamp'];
     for ($i=0;$i<$nbLamp;$i++) {

@@ -3,6 +3,7 @@
     <title></title>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
     <link rel="stylesheet" href="design/editRoom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <meta charset="utf-8"> 
   </head>  
   <body>

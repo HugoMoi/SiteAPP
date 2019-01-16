@@ -1,3 +1,12 @@
+body {
+  width: 100%;
+  height: 400px;
+  background-image:url(../image/bulb.jpg);
+  background-size:cover;    
+  background-repeat:no-repeat; 
+  background-attachment:fixed;
+}
+
 #live {
 	position: absolute;
   	left: 100px;
@@ -22,11 +31,12 @@
   padding: 15px 0 0 0px;
 }
 #bot {
-  background-color: #f3f3f3;
+  background-color: rgba(243, 243, 243, 0.8);
 } 
 
 .room_name, .lamp_name, .window_name, .captor_name{
 	width: 150px;
+  position: relative;
 }
 
 #lamp_name, #window_name, #captor_name{
@@ -38,4 +48,59 @@
 
 td {
   padding: 5px 5px 5px 10px;
+}
+
+.switch {
+  position: absolute;
+  display: block;
+  right: 7px;
+  bottom: 7px;
+  width: 30px;
+  height: 17px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 13px;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  border-radius: 50%;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4cd964;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+.btn_delete_room, .btn_delete_lamp, .btn_delete_window, .btn_delete_captor, #btn_add_room, #btn_add_lamp, #btn_add_window, #btn_add_ {
+  background: none;
+  border: none;
 }

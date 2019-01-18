@@ -21,21 +21,20 @@ h1, h2{
 .question label{
         margin-left: 15%;
         margin-right: 15%;
-        background: #eee;
+        background: #cfcfcf;
         display: block;
         position: relative;
         padding: 7px 10px;
         font-weight: bold;
-        border: 1px solid #ddd;
+        border: 1px solid #cfcfcf;
         border-left: 3px solid #888;
 }
 
 /* Style du label si le checkbox est coché */
 .question input[type=checkbox]:checked~label{
         color: white;
-        border-color: #505cd5;
-        background: #90b0f8;
-        background-image: linear-gradient(to bottom, #424458, #5b7db7); /*effet dégradé*/
+        border-color: black;
+        background: #424458;
 }
 
 /*gérer la flèche*/
@@ -74,16 +73,6 @@ footer{
         margin-right: auto;
         padding-top: 2%;
         padding-bottom: 2%;
-}
-
-.delete{
-        text-decoration: none;
-        color: black;
-        margin-left: 15%;
-        margin-top:10px;
-}
-.delete:hover{
-        color: red;
 }
 
 @media only screen and (max-width:750px){

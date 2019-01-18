@@ -313,6 +313,12 @@ function house($idm) {
 	$house->execute(array($idm));
 	return $house;
 }
+function house_active($idh,$idm) {
+	$bdd = bdd();
+	$house = $bdd->prepare("SELECT HouseName FROM house WHERE HouseID = ? AND MemberID = ? ");
+	$house->execute(array($idh,$idm));
+	return $house;
+}
 
 function house_fav($idh,$idm) {
 	$bdd = bdd();

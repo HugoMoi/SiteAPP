@@ -13,6 +13,11 @@ body {
 	top: 120px;
 	right: 10px;
 }
+#title {
+  text-align: center;
+  font-size: 3em;
+  color: #424458;
+}
 #box {
 	/*border: 1px solid black;*/
 	display: inline-grid;

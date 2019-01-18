@@ -19,11 +19,19 @@ if (!empty($_SESSION['id'])) {
 
 		
 		<div id="content">
+			<div id="title">
+				<?php $idm = intval($_SESSION['id']);
+				$houseActive = house_active($idh,$idm);
+				foreach($houseActive as $row) {
+					$houseName = $row["HouseName"];
+					echo $houseName;
+				}
+				?>
+			</div>
 			<?php foreach($rooms as $room) { 
-				$idr= $room['RoomID'];
-			?>
-
+				$idr= $room['RoomID']; ?>
 			<div id="box">
+				
 				<input type="checkbox" id="<?php echo $idr; ?>">
 				<div id="top">
 					<div id="pièce"><?php echo $room['RoomName']; ?></div>

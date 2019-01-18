@@ -1,4 +1,4 @@
-    <?php include("views/General.php");?>
+
 <html>
 <head>
   <link rel="stylesheet" href="design/parametre.css" />

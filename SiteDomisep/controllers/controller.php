@@ -424,13 +424,14 @@ function house_edit() {
 
 
 function favHouse() {
-    include "views/parametres.php";
+    include "views/General.php";
     if (isset($_POST['fav'])) {
         $idh = $_POST['fav'];
         $idm = intval($_SESSION['id']);
         house_fav($idh,$idm);
+        header('Location: index.php?action=parametre');
     }
-    
+    include "views/parametres.php";
 }
 
 
@@ -595,6 +596,7 @@ function editionprofil(){
 
 
 function parametre(){
+        include "views/General.php";
         include "views/parametres.php";
 
 }

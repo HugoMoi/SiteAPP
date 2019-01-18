@@ -131,6 +131,8 @@ function addRoom() {
         roomTemp($roomTempState);
         $idm = intval($_SESSION['id']);
         insertRoom($roomTempState,$idm,$idh);
+        $message = "Pièce ajoutée";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     }
   }
 }

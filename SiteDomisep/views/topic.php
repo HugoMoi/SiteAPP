@@ -43,14 +43,20 @@ while ($liste=$request->fetch()) {?>
 		while ($listeMessage= $reqReponse -> fetch()) {?>
 			<div class="message">
 				<div class="gauche">
-				<a>réponse de : <?php echo $listeMessage['pseudo'] ?><br> le <?php echo $listeMessage['date_message'] ?></a><br></div>
+					<a>réponse de : <?php echo $listeMessage['pseudo'] ?><br> le <?php echo $listeMessage['date_message'] ?></a><br>
+				</div>
 				<div class="droite">
-				<a><?php echo $listeMessage['reponse'] ?><br><br></a>
-			</div>
+					<a><?php echo $listeMessage['reponse'] ?><br><br></a>
+				</div>
 
+				<?php
+				$mID=$listeMessage['id'];
+				if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) {
+					?>
+					<a class="delete" href="index.php?action=topic&var=<?= $selection ?>&numtopic=<?=$numtopic?>&deleteMessage=<?= $mID?>">Supprimer </a>
+				<?php } ?>
 			</div>
-		<?php 
-		}?>
+		<?php }?>
 	</div><br><br>
 
 <?php

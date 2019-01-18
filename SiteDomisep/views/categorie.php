@@ -31,9 +31,17 @@ while ($liste=$request->fetch()) {
 	<p class="text"><?php
 	echo $liste['Question'] ?></p><br>
 	</div>
+<?php
+$mID=$liste['id_topic'];
+    if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) {
+    	$url="index.php?action=categorie&var=".$selection."&delete=<?= $mID?>";?>
+    	<a class="delete" href="index.php?action=categorie&var=<?= $selection ?>&delete=<?= $mID?>">
+Supprimer </a>
+<?php
+} ?>
 	</div><br>
 <?php
-}    
+}   
 
 ?>
 

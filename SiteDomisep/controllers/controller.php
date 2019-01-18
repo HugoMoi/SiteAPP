@@ -4,71 +4,96 @@ include "models/model.php";
 
 /*Forum*/
 function forum() {
-	$reqcategories= affichForum();
-/*	$nbmessage=affichNbTopic($num);
-*/    include "views/forum.php";
+  $reqcategories= affichForum();
+  if (isset($_POST['publier']))
+        {  
+        session_start();
+        $titre=$_POST['ajout'];
+      
+    addCategorie($titre);
+    $url="index.php?action=forum";
+    header("Location:".$url);
+  }
+  if(isset($_GET['delete']) AND !empty($_GET['delete'])){
+      forum_delete();
+
+      $url="index.php?action=forum";
+      header("Location:".$url);
+    }
+    include "views/forum.php";
 }
 function categorie(){
 
-	$selection =$_GET['var'];
-	$request=affichCategorie($selection);
-   	if (isset($_POST['publier']))
+  $selection =$_GET['var'];
+  $request=affichCategorie($selection);
+  
+  if (isset($_POST['publier']))
         {  
-       	session_start();
+        session_start();
         date_default_timezone_set( 'Europe/Paris' );
         $titre=$_POST['titre'];
-    	$question=$_POST['Question'];
-   		$pseudo=$_SESSION['pseudo'];
-   		$date=date("Y-m-d H:i:s");
-		addTopic($selection,$titre,$pseudo,$date,$question);
-		$url="index.php?action=categorie&var=".$selection;
-		header("Location:".$url);
-	}else{
-		// nothing to do: pas de nouveau topic
-	}
+      $question=$_POST['Question'];
+      $pseudo=$_SESSION['pseudo'];
+      $date=date("Y-m-d H:i:s");
+    addTopic($selection,$titre,$pseudo,$date,$question);
+    $url="index.php?action=categorie&var=".$selection;
+    header("Location:".$url);
+  }
+  else{
+    // nothing to do: pas de nouveau topic
+  }
+  if(isset($_GET['delete']) AND !empty($_GET['delete'])){
+      topic_delete();
 
-		include "views/categorie.php";
+      $url="index.php?action=categorie&var=".$selection;
+      header("Location:".$url);
+    }
+
+    include "views/categorie.php";
 }
 
 function topic(){
-	$selection =$_GET['var'];
-	$numtopic=$_GET['numtopic'];
-	$request=affichQuestion($selection,$numtopic);
-	$reqReponse=affichReponse($numtopic);
+  $selection =$_GET['var'];
+  $numtopic=$_GET['numtopic'];
+  $request=affichQuestion($selection,$numtopic);
+  $reqReponse=affichReponse($numtopic);
 
+    if (isset($_POST['publier']))
+    {  
+      session_start();
+      date_default_timezone_set( 'Europe/Paris' );
+      $reponse=$_POST['reponse'];
+          $pseudo=$_SESSION['pseudo'];
+          $date=date("Y-m-d H:i:s");
+          addPost($numtopic,$reponse,$pseudo,$date);
 
-
-        if (isset($_POST['publier']))
- 		{  
- 			session_start();
- 			date_default_timezone_set( 'Europe/Paris' );
- 			$reponse=$_POST['reponse'];
-        	$pseudo=$_SESSION['pseudo'];
-        	$date=date("Y-m-d H:i:s");
-        	addPost($numtopic,$reponse,$pseudo,$date);
-
-		/*redirection*/
- 		$url="index.php?action=topic&var=".$selection."&numtopic=".$numtopic;
-		header("Location:".$url);
+    /*redirection*/
+    $url="index.php?action=topic&var=".$selection."&numtopic=".$numtopic;
+    header("Location:".$url);
 }
-	include"views/topic.php";
+if(isset($_GET['deleteMessage']) AND !empty($_GET['deleteMessage'])){
+      Reponse_delete();
+    $url="index.php?action=topic&var=".$selection."&numtopic=".$numtopic;
+    header("Location:".$url);
+    }
+  include"views/topic.php";
 }
 
 /*Accueil*/
 function accueil(){
-	include 'views/Accueil.php';
+  include 'views/Accueil.php';
 }
 
 /*Expertise*/
 function expertise(){
-	$messages=catalogue();
-	include 'views/Expertise.php';
+  $messages=catalogue();
+  include 'views/Expertise.php';
 }
 
 /*FAQ*/
 function FAQ(){
-	$reqFAQ=affichFAQ();
-	 if (isset($_POST['publier']))
+  $reqFAQ=affichFAQ();
+   if (isset($_POST['publier']))
         {
             $question=$_POST['question'];
             $reponse=$_POST['reponse'];
@@ -77,9 +102,13 @@ function FAQ(){
 
         }
         else{
-        	/*nothing to do : pas de nouvelle question*/
+          /*nothing to do : pas de nouvelle question*/
         }
-	include 'views/FAQ.php';
+    if(isset($_GET['delete']) AND !empty($_GET['delete'])){
+      FAQ_delete();
+      header("Location:index.php?action=FAQ");
+    }
+  include 'views/FAQ.php';
 }
 
 /*A propos de nous*/

@@ -15,7 +15,7 @@
 <?php 
     while($post = $reqFAQ->fetch()){ 
        ?>
-
+<div id="question">
     <section class="question">
         <input type="checkbox" id="<?= $post['ID']?>">
         
@@ -32,6 +32,7 @@
     if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) {?>
     <a class="delete" href="index.php?action=FAQ&delete=<?= $mID?>">
 <i class="material-icons">delete</i> </a>
+</div>
     <?php }} ?>
 </div>
 

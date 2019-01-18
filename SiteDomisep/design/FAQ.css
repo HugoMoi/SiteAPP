@@ -19,8 +19,6 @@ h1, h2{
 
 /* Style des labels ( les questions) */
 .question label{
-        margin-left: 15%;
-        margin-right: 15%;
         background: #cfcfcf;
         display: block;
         position: relative;
@@ -55,7 +53,20 @@ h1, h2{
         margin-top: -3px;
         right: 10px;
 }
+#question {
+        width: 70%;
+        background-color: rgba(243, 243, 243, 0.8);
+        margin-left: 15%;
+        
+}
 
+.delete {
+        color: black;
+}
+
+.delete:hover {
+        color:red;
+}
 p{
 margin-left: 18%;
 margin-right: 18%;

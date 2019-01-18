@@ -47,6 +47,7 @@ include("General.php");
                   <td align="right">
                   <label>Adresse :</label>
                   <input type="text" name="newadresse" placeholder="Adresse"/><br /><br />
+                  <input type="text" name="newadresse" placeholder="Adresse" /><br /><br />
                </td>
             </tr>
             <tr>

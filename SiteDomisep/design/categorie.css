@@ -94,3 +94,10 @@ h2{
 .titre:hover{
 	box-shadow: 5px -5px 29px 1px #888888
 }
+.delete{
+        text-decoration: none;
+        color: red;
+}
+.delete:hover{
+        color: blue;
+}

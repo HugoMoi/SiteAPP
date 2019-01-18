@@ -6,7 +6,6 @@
 	margin-bottom: 10px;
 	float: left;
 	margin-left: 10px;
-	font-family: Times, Times New Roman, serif;
 	color: white;
 	text-decoration: none;
 	border-radius: 3px;
@@ -15,14 +14,10 @@
 h2{
 	
 	padding-left: 23%;
-	font-family: Times, Times New Roman, serif;
-	padding: 
-	margin-left:°
-	margin-right: ;
 }
 .totalCategorie{
-	width: 55%;
-	margin-left: 40%;
+	width: 65%;
+	margin-left: 30%;
 	margin-right: auto;
 	float: right;
 }
@@ -39,7 +34,12 @@ body{
     backface-visibility: visible;
  
 }
-
-h1{
-	font-family: Times, Times New Roman, sans-serif;
+#boite {
+	display: inline-grid;
+}
+.delete{
+	color: black;
+}
+.delete:hover{
+	color: red;
 }

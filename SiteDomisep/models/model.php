@@ -7,16 +7,29 @@ function affichForum(){
 	$bdd=bdd();
 	$reqcategories=$bdd -> prepare('SELECT* FROM categorie ');
 	$reqcategories->execute(array());
-
-	
 	return $reqcategories;
 }
+
+function forum_delete() {
+	$bdd=bdd();
+    $delete = $_GET['delete'];
+    $reqDelete = $bdd->prepare("DELETE FROM categorie WHERE id = ?");
+    $reqDelete->execute(array($delete));
+    return($reqDelete);
+}
+
 function affichNbTopic($num){
 	$bdd=bdd();
 	$reqNbmessage=$bdd ->prepare("SELECT COUNT(titre) FROM topic WHERE id_categorie=?");
 	$reqNbmessage->execute(array($num));
 	$nbmessage=$reqNbmessage ->fetch();
 	return $nbmessage;
+}
+
+function addCategorie($titre){
+	 $bdd=bdd();
+    $reqPublier = $bdd->prepare('INSERT INTO categorie(nom)  VALUES(?)');
+    $reqPublier->execute(array($titre));
 }
 
 
@@ -28,10 +41,16 @@ function affichCategorie($selection){
 	$request->execute(array());
 	return $request;
 }
+function topic_delete() {
+	$bdd=bdd();
+    $delete = $_GET['delete'];
+    $reqDelete = $bdd->prepare("DELETE FROM topic WHERE id_topic = ?");
+    $reqDelete->execute(array($delete));
+    return($reqDelete);
+}
 
 /*fonctionne aussi dans le topic.php*/
 function nbrMessage($num){
-
 	$bdd=bdd();
 	/*compter le nbre de message par categorie*/
 	$reqNbmessage=$bdd ->prepare("SELECT COUNT(reponse) FROM message WHERE id_topic=?");
@@ -66,7 +85,13 @@ function affichReponse($numtopic){
 	$reqReponse=$bdd -> prepare("SELECT * FROM message JOIN topic ON message.id_topic=topic.id_topic WHERE topic.id_topic='$numtopic' ORDER BY message.date_message");
 	$reqReponse->execute(array());
 	return $reqReponse;
-
+}
+function Reponse_delete() {
+	$bdd=bdd();
+    $deleteMessage = $_GET['deleteMessage'];
+    $reqDelete = $bdd->prepare("DELETE FROM message WHERE id = ?");
+    $reqDelete->execute(array($deleteMessage));
+    return($reqDelete);
 }
 function addPost($id,$reponse,$pseudo,$date){
      $bdd=bdd();
@@ -95,6 +120,18 @@ function addQuestion($question,$reponse){
     $reqPublier->execute(array($question,$reponse));
     return $reqPublier;
     }
+/*function FAQ_delete() {
+    $connect = connect();
+    $sql = "DELETE FROM post WHERE ID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);
+}*/
+function FAQ_delete() {
+	$bdd=bdd();
+    $delete = $_GET['delete'];
+    $reqDelete = $bdd->prepare("DELETE FROM post WHERE ID = ?");
+    $reqDelete->execute(array($delete));
+    return($reqDelete);
+}
 
 /*Lucas*/
 function rooms() {

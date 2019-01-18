@@ -27,7 +27,12 @@
         <!--la réponse  -->
         <p> <?php echo $post['Reponse'];?>   </p>
     </section>
-    <?php } ?>
+    <?php
+    $mID=$post['ID'];
+    if (isset($_SESSION['admin']) && ($_SESSION['admin'])==1) {?>
+    <a class="delete" href="index.php?action=FAQ&delete=<?= $mID?>">
+<i class="material-icons">delete</i> </a>
+    <?php }} ?>
 </div>
 
 
@@ -61,3 +66,18 @@ else  {
 
 </body>
 </html>
+<script>
+    $(document).on('click', '.btn_delete_lamp', function(){  
+      var id=$(this).data("id2");  
+      $.ajax({  
+        url:"index.php?action=lamp_remove",  
+        method:"POST",  
+        data:{id:id},  
+        dataType:"text",  
+        success:function(data){ 
+          fetch_lamp();  
+        }  
+      });  
+    });
+
+</script>

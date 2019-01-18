@@ -6,9 +6,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-
+        <?php $idh = $_GET['idh']; ?>
 		<div id="content">
-			<form method="post" action="index.php?action=addRoom">
+			<form method="post" action="index.php?action=addRoom&idh=<?= $idh ?>">
         		<div id="room">
                     <div id="top"> Nouvelle pièce </div>
                 	<div id="bot">

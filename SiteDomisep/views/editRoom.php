@@ -4,24 +4,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
     <link rel="stylesheet" href="design/editRoom.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8"> 
   </head>  
   <body>
-    <?php include("views/general.php"); ?>
+    <?php include("views/general.php"); 
+    ?>
     <div id="live">
       <div id="live_room" class="live room"></div> 
       <div id="live_lamp" class="live lamp" ></div>
       <div id="live_window" class="live window"></div> 
       <div id="live_captor" class="live captor"></div> 
     </div>
-
   </body>  
 </html>   
  <script> 
   $(document).ready(function(){  
     function fetch_room() {  
       $.ajax({  
-        url:"index.php?action=room_fetch&idr='<?= $idr ?>'",  
+        url:"index.php?action=room_fetch&idr='<?= $idr ?>'&idh=<?= $idh ?>",  
         method:"POST",  
         success:function(data){  
           $('#live_room').html(data);  
@@ -61,7 +62,7 @@
     $(document).on('click', '.btn_delete_room', function(){  
       var id=$(this).data("id2");  
       $.ajax({  
-        url:"index.php?action=room_remove",  
+        url:"index.php?action=room_remove&idh='<?= $idh ?>'",  
         method:"POST",  
         data:{id:id},  
         dataType:"text",  

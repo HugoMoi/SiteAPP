@@ -9,16 +9,16 @@ body {
 
 #live {
 	position: absolute;
-  	left: 100px;
+  	left: 5%;
   	top: 120px;
-  	right: 100px;
+  	right: 5%;
 }
 
 .live {
 	display: inline-grid;
- 	margin: 30px;
+ 	margin: 25px;
   position: relative;
-  width: 200px;
+  width: 20%;
 }
 #top {
   height:50px;
@@ -100,7 +100,38 @@ input:checked + .slider:before {
   transform: translateX(13px);
 }
 
-.btn_delete_room, .btn_delete_lamp, .btn_delete_window, .btn_delete_captor, #btn_add_room, #btn_add_lamp, #btn_add_window, #btn_add_ {
+.btn_delete_room, .btn_delete_lamp, .btn_delete_window, .btn_delete_captor, #btn_add_room, #btn_add_lamp, #btn_add_window, #btn_add_captor {
   background: none;
   border: none;
+}
+
+@media all and (max-width:1180px) {
+
+.live {
+  width: 17%;
+  margin: 15px;
+}
+
+}
+
+@media all and (max-width:830px) {
+
+#live {
+  top: 170px;
+}
+.live {
+  width: 30%;
+}
+
+}
+
+@media all and (max-width:650px) {
+
+.live {
+  width: 85%;
+}
+.room_name, .lamp_name, .window_name, .captor_name{
+  width: 420px;
+}
+
 }

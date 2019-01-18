@@ -1,10 +1,9 @@
 <?php 
 include("views/General.php");
-
-
-	if (!empty($_SESSION['id'])) {
-		$bdd = bdd();
-		$rooms = $bdd->query('SELECT * FROM room WHERE MemberID="'.$_SESSION['id'].'"');
+$idh = $_GET['idh'];
+if (!empty($_SESSION['id'])) {
+		$rooms = rooms();
+		
  ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +11,6 @@ include("views/General.php");
 		<title>Maison</title>
 		<link rel="stylesheet" href="design/maison.css">
 		<link rel="stylesheet" href="design/vertical.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
@@ -48,7 +46,7 @@ include("views/General.php");
 						<div>
 							<p><?php echo $lamp['LampName']; ?></p>
 							<label class="switch">
-								<a href="index.php?action=actionLamp&idl=<?= $idl ?>">
+								<a href="index.php?action=actionLamp&idh=<?= $idh ?>&idl=<?= $idl ?>">
 									<input type="checkbox" name="switch" value="1"
 										<?php if($statel == true) {echo 'checked';}?> >
 									  <span class="slider lamp"></span>
@@ -66,7 +64,7 @@ include("views/General.php");
   						<div>
 							<p><?php echo $window['WindowName']; ?></p>
 							<label class="switch">
-								<a href="index.php?action=actionWindow&idw=<?= $idw ?>">
+								<a href="index.php?action=actionWindow&idh=<?= $idh ?>&idw=<?= $idw ?>">
 									<input type="checkbox" name="switch" value="1"
 										<?php if($statew == true) {echo 'checked';}?> >
 									<span class="slider window"></span>
@@ -78,7 +76,7 @@ include("views/General.php");
 					</div>
 					<div id="options">
 						<div id="parameters">
-							<a href="index.php?action=editRoom&idr=<?= $idr ?>"><i class="material-icons setting_btn">settings</i></a>
+							<a href="index.php?action=editRoom&idh=<?= $idh ?>&idr=<?= $idr ?>"><i class="material-icons setting_btn">settings</i></a>
 						</div>
 						<?php
 						if(isset(($room['RoomTempState']))) { 
@@ -96,7 +94,7 @@ include("views/General.php");
 			</div>
 			<?php } ?>
 			<div id="addRoom">
-  				<a href="index.php?action=addRoom" id="add"><i class="material-icons plus_btn">add</i></a>
+  				<a href="index.php?action=addRoom&idh=<?= $idh ?>" id="add"><i class="material-icons plus_btn">add</i></a>
   			</div>
   			<p id="test"></p>
 		</div>

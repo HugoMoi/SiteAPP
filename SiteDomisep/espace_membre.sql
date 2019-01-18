@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 16 jan. 2019 à 14:54
+-- Généré le :  ven. 18 jan. 2019 à 04:19
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `captor` (
   `CaptorName` text COLLATE utf8_unicode_520_ci NOT NULL,
   `RoomID` int(11) NOT NULL,
   PRIMARY KEY (`CaptorID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 --
 -- Déchargement des données de la table `captor`
@@ -144,6 +144,31 @@ INSERT INTO `dbstatistique` (`id_stat`, `date`, `temperature`, `humite`, `id_cli
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `house`
+--
+
+DROP TABLE IF EXISTS `house`;
+CREATE TABLE IF NOT EXISTS `house` (
+  `HouseID` int(11) NOT NULL AUTO_INCREMENT,
+  `HouseName` varchar(256) NOT NULL,
+  `MemberID` int(11) DEFAULT NULL,
+  `HouseAddress` varchar(256) DEFAULT NULL,
+  `HousePostal` varchar(256) DEFAULT NULL,
+  `HouseTown` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`HouseID`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `house`
+--
+
+INSERT INTO `house` (`HouseID`, `HouseName`, `MemberID`, `HouseAddress`, `HousePostal`, `HouseTown`) VALUES
+(1, 'NDC', 34, '28 Rue Notre Dame des Champs', '75014', 'Paris'),
+(9, 'NDL', 34, '10 Rue de Vanves', '92130', 'Issy-les-Moulineaux');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `lamp`
 --
 
@@ -154,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `lamp` (
   `LampName` varchar(256) DEFAULT NULL,
   `RoomID` int(11) DEFAULT NULL,
   PRIMARY KEY (`LampID`)
-) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lamp`
@@ -162,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `lamp` (
 
 INSERT INTO `lamp` (`LampID`, `LampCondition`, `LampName`, `RoomID`) VALUES
 (1, 1, 'Chevet Gauche', 1),
-(2, 1, 'Chevet Droit', 1),
+(2, 0, 'Chevet Droit', 1),
 (3, 0, 'Dressing', 1),
 (4, 0, 'Plafond', 2),
 (5, 1, 'Lit 1', 2),
@@ -182,10 +207,6 @@ INSERT INTO `lamp` (`LampID`, `LampCondition`, `LampName`, `RoomID`) VALUES
 (19, 0, 'Lumière', 8),
 (20, 0, 'Lumière', 9),
 (21, 0, 'Lumière', 10),
-(34, 0, 'Lustre', NULL),
-(33, 0, 'Lustre', NULL),
-(32, 0, 'Lustre', NULL),
-(31, 0, 'Lustre', NULL),
 (29, NULL, 'az', NULL),
 (30, 0, 'Lustre', NULL),
 (35, 0, 'Lustre', NULL),
@@ -197,7 +218,19 @@ INSERT INTO `lamp` (`LampID`, `LampCondition`, `LampName`, `RoomID`) VALUES
 (41, 0, 'Lustre', NULL),
 (42, 0, 'Lustre', NULL),
 (43, 0, 'Lustre', NULL),
-(44, 0, 'Lustre', 12);
+(44, 0, 'Lustre', 12),
+(45, 0, 'Neon', 13),
+(46, 0, 'azezr', NULL),
+(47, 0, 'herg', NULL),
+(48, 0, 'ZER', NULL),
+(49, 0, 'sef', NULL),
+(50, 0, 'aezre', NULL),
+(51, 0, 'qDS', NULL),
+(52, 0, 'azer', NULL),
+(53, 0, 'azer', NULL),
+(54, 0, 'azer', NULL),
+(55, 0, 'azer', NULL),
+(56, 0, 'Lustre', 1);
 
 -- --------------------------------------------------------
 
@@ -219,6 +252,7 @@ CREATE TABLE IF NOT EXISTS `membres` (
   `codepostal` int(11) NOT NULL,
   `ville` text NOT NULL,
   `admin` int(11) NOT NULL DEFAULT '0',
+  `fav` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
@@ -226,15 +260,15 @@ CREATE TABLE IF NOT EXISTS `membres` (
 -- Déchargement des données de la table `membres`
 --
 
-INSERT INTO `membres` (`id`, `pseudo`, `mail`, `motdepasse`, `confirmkey`, `confirme`, `nom`, `prenom`, `adresse`, `codepostal`, `ville`, `admin`) VALUES
-(28, 'hjr', 'hashleyjr@gmail.com', 'fde90d3e864627939f2fbbd87df25364b9a7aa6c', '43748383363355', 1, '', '', '', 0, '', 0),
-(33, 'MinhNam', 'nguyen.minhnam@hotmail.fr', 'f001f2e438738807d3079bffaf66519b9d0f26c7', '72986763380639', 1, 'Nguyen', 'MinhNam', '', 0, '', 1),
-(34, 'hugo', 'hugo.gh@gmail.com', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '87991336415118', 1, 'Ghesquiere', 'hugo', '', 0, '', 1),
-(35, 'moi', 'fgfgf@hj.hg', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '15212935311390', 1, 'fbgg', 'hig', '', 0, '', 0),
-(36, 'azer', 'azer@gh.fg', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '34447931529142', 0, 'azer', 'azer', '', 0, '', 0),
-(38, 'gggg', 'fhg@gh.df', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '35785474548927', 0, 'pngggg', 'ggg', '', 0, '', 0),
-(39, 'zzz', 'fhg@gh.ds', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '77420401056588', 0, 'zz', 'zz', 'ed', 78000, 'VERSAILLES', 0),
-(40, 'zzzS', 'fhg@gh.dE', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '52592858193076', 0, 'zz', 'zz', 'ff', 78000, 'VERSAILLES', 0);
+INSERT INTO `membres` (`id`, `pseudo`, `mail`, `motdepasse`, `confirmkey`, `confirme`, `nom`, `prenom`, `adresse`, `codepostal`, `ville`, `admin`, `fav`) VALUES
+(28, 'hjr', 'hashleyjr@gmail.com', 'fde90d3e864627939f2fbbd87df25364b9a7aa6c', '43748383363355', 1, '', '', '', 0, '', 0, NULL),
+(33, 'MinhNam', 'nguyen.minhnam@hotmail.fr', 'f001f2e438738807d3079bffaf66519b9d0f26c7', '72986763380639', 1, 'Nguyen', 'MinhNam', '', 0, '', 1, NULL),
+(34, 'hugo', 'hugo.gh@gmail.com', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '87991336415118', 1, 'Ghesquiere', 'hugo', '28 Rue Notre Dame des Champs', 75006, 'Paris', 1, 9),
+(35, 'moi', 'fgfgf@hj.hg', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '15212935311390', 1, 'fbgg', 'hig', '', 0, '', 0, NULL),
+(36, 'azer', 'azer@gh.fg', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '34447931529142', 0, 'azer', 'azer', '', 0, '', 0, NULL),
+(38, 'gggg', 'fhg@gh.df', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '35785474548927', 0, 'pngggg', 'ggg', '', 0, '', 0, NULL),
+(39, 'zzz', 'fhg@gh.ds', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '77420401056588', 0, 'zz', 'zz', 'ed', 78000, 'VERSAILLES', 0, NULL),
+(40, 'zzzS', 'fhg@gh.dE', '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', '52592858193076', 0, 'zz', 'zz', 'ff', 78000, 'VERSAILLES', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -321,27 +355,27 @@ CREATE TABLE IF NOT EXISTS `room` (
   `RoomID` int(11) NOT NULL AUTO_INCREMENT,
   `RoomName` varchar(256) NOT NULL,
   `RoomTempState` int(11) NOT NULL DEFAULT '0',
-  `RoomTemp` int(11) DEFAULT NULL,
-  `MemberID` int(11) DEFAULT NULL,
   `RoomTempReq` int(11) NOT NULL DEFAULT '20',
+  `RoomTemp` int(11) DEFAULT NULL,
+  `HouseID` int(11) DEFAULT NULL,
+  `MemberID` int(11) DEFAULT NULL,
   PRIMARY KEY (`RoomID`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `room`
 --
 
-INSERT INTO `room` (`RoomID`, `RoomName`, `RoomTempState`, `RoomTemp`, `MemberID`, `RoomTempReq`) VALUES
-(1, 'Chambres Parents', 1, 18, 34, 0),
-(2, 'Chambres Enfants', 0, 20, 34, 0),
-(3, 'Chambres Invités', 0, 19, 34, 0),
-(12, 'Salon', 1, NULL, 34, 0),
-(5, 'Salle de Bain Enfants', 0, NULL, 0, 0),
-(6, 'Séjour', 0, 20, 0, 0),
-(7, 'Bureau', 0, NULL, 0, 0),
-(8, 'Toilette', 0, NULL, 0, 0),
-(9, 'Buanderie', 0, NULL, 0, 0),
-(10, 'Hall', 0, NULL, 0, 0);
+INSERT INTO `room` (`RoomID`, `RoomName`, `RoomTempState`, `RoomTempReq`, `RoomTemp`, `HouseID`, `MemberID`) VALUES
+(1, 'Chambres Parents', 1, 0, 18, 1, 34),
+(2, 'Chambres Enfants', 0, 0, 20, 1, 34),
+(12, 'Salon', 1, 0, NULL, 1, 34),
+(5, 'Salle de Bain Enfants', 0, 0, NULL, 9, 34),
+(6, 'Séjour', 0, 0, 20, 9, 34),
+(7, 'Bureau', 0, 0, NULL, 0, 0),
+(8, 'Toilette', 0, 0, NULL, 0, 0),
+(9, 'Buanderie', 0, 0, NULL, 0, 0),
+(10, 'Hall', 0, 0, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -389,11 +423,11 @@ INSERT INTO `topic` (`id_topic`, `titre`, `date_topic`, `author`, `nbrMessage`, 
 DROP TABLE IF EXISTS `window`;
 CREATE TABLE IF NOT EXISTS `window` (
   `WindowID` int(11) NOT NULL AUTO_INCREMENT,
-  `WindowCondition` tinyint(1) DEFAULT NULL,
+  `WindowCondition` tinyint(1) DEFAULT '0',
   `WindowName` varchar(256) DEFAULT NULL,
   `RoomID` int(11) DEFAULT NULL,
   PRIMARY KEY (`WindowID`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `window`
@@ -409,22 +443,6 @@ INSERT INTO `window` (`WindowID`, `WindowCondition`, `WindowName`, `RoomID`) VAL
 (8, 0, 'Baie Vitrée', 6),
 (9, 0, 'Fenêtre', 7),
 (10, 0, 'Fenêtre', 10),
-(12, NULL, 'FenÃªtre', 1),
-(13, NULL, 'Baie Vitrée', NULL),
-(14, NULL, 'Balcon', NULL),
-(15, NULL, 'Baie Vitrée', NULL),
-(16, NULL, 'Balcon', NULL),
-(17, NULL, 'Baie Vitrée', NULL),
-(18, NULL, 'Balcon', NULL),
-(19, NULL, 'Baie Vitrée', NULL),
-(20, NULL, 'Balcon', NULL),
-(21, NULL, 'Baie Vitrée', NULL),
-(22, NULL, 'Balcon', NULL),
-(23, NULL, 'Baie Vitrée', NULL),
-(24, NULL, 'Balcon', NULL),
-(25, NULL, 'Baie Vitrée', NULL),
-(26, NULL, 'Balcon', NULL),
-(27, NULL, 'Baie Vitrée', NULL),
 (28, NULL, 'Balcon', NULL),
 (29, NULL, 'Baie Vitrée', NULL),
 (30, NULL, 'Balcon', NULL),
@@ -439,7 +457,8 @@ INSERT INTO `window` (`WindowID`, `WindowCondition`, `WindowName`, `RoomID`) VAL
 (39, NULL, 'Balcon', NULL),
 (40, NULL, 'Balcon', NULL),
 (41, NULL, 'Baie Vitrée', 12),
-(42, NULL, 'Balcon', 12);
+(42, NULL, 'Balcon', 12),
+(43, NULL, 'az', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,11 +1,81 @@
+body {
+  width: 100%;
+  height: 400px;
+  background-image:url(../image/bedroom.jpg);
+  background-size:cover;    
+  background-repeat:no-repeat; 
+  background-attachment:fixed;
+}
+
+
+#content {
+	position: absolute;
+	left: 10px;
+	top: 120px;
+	right: 10px;
+}
+
+#infos, #live_house {
+	display: inline-grid;
+ 	margin: 15px;
+  	position: relative;
+  	width: calc(50% - 66px);
+}
+#live_house {
+	top: 4px;
+}
+#profil, #adresse {
+	display: inline-grid;
+ 	padding: 15px;
+  	width: 100%;
+}
+#top {
+	height: 36px;
+	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+	background-color: #cfcfcf;
+	text-align: center;
+	padding: 15px 0 0 0px;
+}
+
+#btn {
+	text-align: center;
+}
+
+#house_name, #house_address, #house_postal, #house_town{
+  font-style: italic;
+  color: #cfcfcf;
+}
+.btn_delete_house, #btn_add_house {
+	background: none;
+  	border: none;
+}
+#houses {
+	border-collapse: collapse;
+}
+#houses tr:first-child {
+	background-color: #cfcfcf;
+	box-shadow: rgba(0,0,0,0.1) 0 5px 15px;
+  text-align: center;
+  height: 50px;
+  padding: 15px 0 0 0px;
+}
+
+td {
+  padding: 5px 5px 5px 10px;
+}
+table {
+	
+  background-color: rgba(243, 243, 243, 0.6);
+} 
+
 
 .lien{
 	text-decoration: none;
+	text-align: center;
 	display: inline-block;
 	background-color: black;
 	color: white;
-	margin-right: auto;
-	margin-left: auto;
+	margin: 0 30px;
 	width: 150px;
 	height: 30px;
 	border-radius: 50px;
@@ -14,4 +84,19 @@
 }
 .lien:hover{
 	color: red;
+}
+
+@media all and (max-width:830px) {
+
+#content {
+  top: 170px;
+}
+}
+
+@media all and (max-width:680px) {
+
+#infos, #live_house {
+	display: block;
+  	width: 85%;
+}
 }

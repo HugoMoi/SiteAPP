@@ -97,8 +97,12 @@ function addQuestion($question,$reponse){
     }
 
 /*Lucas*/
-
-
+function rooms() {
+	$bdd = bdd();
+	$rooms = $bdd->prepare("SELECT * FROM room WHERE HouseID = ? AND MemberID = ?");
+	$rooms->execute(array($_GET['idh'],$_SESSION['id']));
+	return $rooms;
+}
 function lamps(int $idr) {
 	$bdd = bdd();
 	$lamps = $bdd->prepare('SELECT * FROM lamp WHERE RoomID=?');
@@ -153,14 +157,15 @@ function onw(int $getidw) {
     $onw->execute(array($getidw));
     return $onw;
 }
-function insertRoom($roomTempState,$idm) {
+function insertRoom($roomTempState,$idm,$idh) {
     $bdd = bdd();
-    $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTempState`,MemberID) VALUES (? , ?, ?)");
-    $req->execute(array($_POST['roomName'],$roomTempState,$idm));
+    $req = $bdd->prepare("INSERT INTO room (`RoomName`, `RoomTempState`,MemberID,HouseID) VALUES (? , ?, ?, ?)");
+    $req->execute(array($_POST['roomName'],$roomTempState,$idm,$idh));
     
-    $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName AND MemberID = :MemberID");
-	$reqId->execute(['RoomName' => $_POST['roomName'],'MemberID' => $idm]);		
+    $reqId = $bdd->prepare("SELECT `RoomID` FROM `room` WHERE `RoomName` = :RoomName AND HouseID = :HouseID AND MemberID = :MemberID");
+	$reqId->execute(['RoomName' => $_POST['roomName'],'HouseID' => $idh,'MemberID' => $idm]);		
 	$roomId= $reqId->fetch();
+
 	$nbLamp = $_POST['nbLamp'];
     for ($i=0;$i<$nbLamp;$i++) {
 		$reqLamp = $bdd->prepare("INSERT INTO `lamp`(`LampName`, `RoomID`) VALUES (:LampName,:RoomID)");
@@ -177,12 +182,7 @@ function insertRoom($roomTempState,$idm) {
 		$reqCaptor->execute(['CaptorName'=> $_POST['nbCaptor'.$i],'RoomID' => $roomId['RoomID']]);
     } 
 }
-function rooms(int $idr) {
-	$bdd = bdd();
-	$rooms = $bdd->prepare("SELECT * FROM room WHERE RoomID = ? ");
-	$rooms->execute(array($idr));
-	return $rooms;		
-}
+
 function room_update($id,$text) {
     $connect = connect();
     $sql = "UPDATE room SET RoomName ='$text' WHERE RoomID ='$id'";  
@@ -282,6 +282,51 @@ function captor_select() {
  	$result = mysqli_query($connect, $sql);
  	return $result;
 }
+
+
+function house_update($id,$text,$column_name) {
+	$connect = connect();
+	$sql = "UPDATE house SET ".$column_name."='".$text."' WHERE HouseID='".$id."'";  
+ 	if(mysqli_query($connect, $sql))  {  
+      echo 'Data Updated';  
+ 	}   
+}
+function house_delete() {
+	$connect = connect();
+    $sql = "DELETE FROM house WHERE HouseID = '".$_POST["id"]."'";  
+    mysqli_query($connect, $sql);
+}
+function house_insert() {
+	$connect = connect();
+    $sql = "INSERT INTO house(HouseName,MemberID,HouseAddress,HousePostal,HouseTown) VALUES('".$_POST["house_name"]."',".$_POST["idm"].",'".$_POST["house_address"]."','".$_POST["house_postal"]."','".$_POST["house_town"]."')";  
+    mysqli_query($connect, $sql);
+}
+function house_select() {
+	$connect = connect(); 
+	$sql = "SELECT * FROM house WHERE MemberID =".$_POST["idm"];  
+ 	$result = mysqli_query($connect, $sql);
+ 	return $result;
+}
+function house($idm) {
+	$bdd = bdd();
+	$house = $bdd->prepare("SELECT * FROM house WHERE MemberID = ? ");
+	$house->execute(array($idm));
+	return $house;
+}
+
+function house_fav($idh,$idm) {
+	$bdd = bdd();
+	$fav = $bdd->prepare("UPDATE membres SET fav = ? WHERE id = ?");
+	$fav->execute(array($idh,$idm));
+} 	
+
+function fav($idm) {
+	$bdd = bdd();
+	$fav = $bdd->prepare("SELECT fav FROM membres WHERE id = ?");
+	$fav->execute(array($idm));
+	return $fav;
+}
+
 function temp_update($temp) {
 	$connect = connect();
 	$sql = "UPDATE room SET RoomTemp ='$temp' WHERE RoomID =".$_GET['idr'];

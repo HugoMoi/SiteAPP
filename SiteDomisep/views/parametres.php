@@ -7,7 +7,8 @@
 </head>
 <body>
    
-<?php if (isset($_SESSION['id'])) {?>
+<?php if (isset($_SESSION['id'])) {
+  $getid = intval($_SESSION['id']); ?>
 <form method="post" action="traitement.php">
  
    <fieldset>
@@ -50,6 +51,29 @@
        </select>
    </p>
 </fieldset>
+</form>
+<form method="POST" action="index.php?action=favHouse">
+    <fieldset>
+        <legend>Maison Principale</legend>
+        <?php $house = house($getid);
+        
+        foreach($house as $row) { 
+          $idh = $row["HouseID"];
+          $name = $row["HouseName"]; ?>
+            <label>
+                <input type="radio" name="fav" value="<?php echo htmlspecialchars($idh); ?>" 
+                  <?php $favoris = fav($getid);
+                  foreach($favoris as $home) { 
+                    $favhouse = $home["fav"];
+                    if($favhouse == $idh) {
+                      echo 'checked';
+                    }
+                  } ?>/>
+                  <a href="index.php?action=maison&idh=<?= $idh ?>"><?= $name ?><i class="material-icons">home</i></a>
+            </label>
+          <?php } ?>
+          <input type="submit" name="submit" id="submit" value="Sélectionner" />
+    </fieldset>
 </form>
 <?php } 
 else{

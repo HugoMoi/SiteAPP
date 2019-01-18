@@ -10,15 +10,15 @@ body {
 
 #content {
 	position: absolute;
-  	left: 100px;
+  	left: 6%;
   	top: 120px;
-  	right: 100px;
+  	right: 6%;
 }
 
 
 #room, #lamp, #window, #captor {
 	display: inline-grid;
- 	margin: 30px;
+ 	margin: 2%;
   	position: relative;
   	width:200px;
 }
@@ -115,4 +115,35 @@ input:checked + .slider:before {
   -webkit-transform: translateX(13px);
   -ms-transform: translateX(13px);
   transform: translateX(13px);
+}
+
+@media all and (max-width:830px) {
+
+#content {
+  top: 170px;
+}
+#lamp, #window {
+  width:170px;
+}
+
+}
+
+@media all and (max-width:710px) {
+
+
+#lamp, #window {
+  width: 200px;
+}
+#captor {
+  display: block;
+}
+
+}
+
+@media all and (max-width:500px) {
+
+#room, #lamp, #window, #captor {
+  width: 80%;
+}
+
 }

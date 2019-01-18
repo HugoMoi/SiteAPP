@@ -123,23 +123,20 @@ function actionWindow() {
     } 
 }
 function addRoom() {
-  include("views/General.php");
+  include "views/General.php";
+  include "views/addRoom.php";
   if (!empty($_SESSION['id'])) {
     if (isset($_POST['roomName'])) {
         $roomTempState = 0;
         roomTemp($roomTempState);
-        $idm = $_SESSION['id'];
-        insertRoom($roomTempState,$idm);
-        header('Location: index.php?action=maison');
+        $idm = intval($_SESSION['id']);
+        insertRoom($roomTempState,$idm,$idh);
     }
-    include "views/addRoom.php";
-  }
-  else {
-    header('Location:index.php?action=connexion');
   }
 }
 function editRoom() {
   $idr = (int) $_GET['idr'];
+  $idh = (int) $_GET['idh'];
   include "views/editRoom.php";
 }
 
@@ -162,6 +159,7 @@ function room_fetch() {
   $output = '';
   $row = 0;
   $result = room_select();
+  $idh = $_GET['idh'];
   $output .= '  
     <div>  
       <div id="top">Nom de la pièce</div>
@@ -171,7 +169,7 @@ function room_fetch() {
       $output .= '
         <tr>
           <td class="room_name" data-id1="'.$row["RoomID"].'" contenteditable>'.$row["RoomName"].'</td>   
-          <td><a href="index.php?action=maison"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room"><i class="material-icons">delete</i></button></a></td>  
+          <td><a href="index.php?action=maison&idh='.$idh.'"><button type="button" name="btn_delete_room" data-id2="'.$row["RoomID"].'" class="btn_delete_room"><i class="material-icons">delete</i></button></a></td>  
         </tr>';   
     }
     else {  
@@ -364,6 +362,77 @@ function captor_edit() {
   $text = $_POST["text"];    
   captor_update($id,$text);
 }
+
+function house_add() {
+  house_insert();
+}
+
+function house_remove() {
+  house_delete();
+}
+
+function house_fetch() {
+  $output = '';
+  $row = 0;
+  $result = house_select();
+  $output .= '  
+      <table id="houses">
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Code Postal</th>
+            <th>Ville</th>
+            <th></th>'; 
+  
+  if(mysqli_num_rows($result) > 0) { 
+    while($row = mysqli_fetch_array($result)) {     
+      $output .= '
+        <tr>
+          <td class="house_name" data-id1="'.$row["HouseID"].'" contenteditable>'.$row["HouseName"].'</td>
+          <td class="house_address" data-id2="'.$row["HouseID"].'" contenteditable>'.$row["HouseAddress"].'</td>
+          <td class="house_postal" data-id3="'.$row["HouseID"].'" contenteditable>'.$row["HousePostal"].'</td> 
+          <td class="house_town" data-id4="'.$row["HouseID"].'" contenteditable>'.$row["HouseTown"].'</td>   
+          <td><button type="button" name="btn_delete_house" data-id5="'.$row["HouseID"].'" class="btn_delete_house"><i class="material-icons">delete</i></button></td>
+            
+        </tr>';   
+    }
+  }
+  else {  
+
+  }
+    $output .= '
+            <tr> 
+              <td id="house_name" contenteditable>Nouvelle maison</td>
+              <td id="house_address" contenteditable>Adresse</td>
+              <td id="house_postal" contenteditable>Code Postal</td>
+              <td id="house_town" contenteditable>Ville</td>   
+              <td><button type="button" name="btn_add_house" id="btn_add_house"><i class="material-icons">add</i></button></td>  
+            </tr>
+          </table>';
+  $image = house_select();
+  while($row = mysqli_fetch_array($image)) {
+    $output .= '<a href="index.php?action=maison&idh='.$row["HouseID"].'"><i class="material-icons">home</i>'.$row["HouseName"].'</a><br>';
+  }
+  echo $output;  
+}
+
+function house_edit() {
+  $id = (int) $_POST["id"];  
+  $text = $_POST["text"];
+  $column_name = $_POST["column_name"];   
+  house_update($id,$text,$column_name);
+}
+
+
+function favHouse() {
+    include "views/parametres.php";
+    if (isset($_POST['fav'])) {
+        $idh = $_POST['fav'];
+        $idm = intval($_SESSION['id']);
+        house_fav($idh,$idm);
+    }
+    
+}
+
 
 function thermometer() {
   $roomTempReq = "liieirf";

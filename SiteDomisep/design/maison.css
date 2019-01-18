@@ -10,7 +10,7 @@ body {
 #content {
 	position: absolute;
 	left: 10px;
-	top: 110px;
+	top: 120px;
 	right: 10px;
 }
 #box {
@@ -209,12 +209,13 @@ input:checked + .slider:before {
   width: calc(33% - 22px);
 }
 
-}
-
-@media all and (max-width:800px) {
+@media all and (max-width:830px) {
 
 #box {
   width: calc(50% - 22px);
+}
+#content {
+  top: 170px;
 }
 
 }

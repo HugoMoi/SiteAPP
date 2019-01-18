@@ -9,11 +9,11 @@ if(isset($_GET["action"]) && !empty($_GET['action'])){
             forum();
             break;
         case 'categorie':
-        	categorie();
-        	break;
+          	categorie();
+          	break;
         case 'topic':
             topic();
-        break;
+            break;
         case 'accueil':
             accueil();
             break;
@@ -26,6 +26,7 @@ if(isset($_GET["action"]) && !empty($_GET['action'])){
         case 'AProposDeNous':
             AProposDeNous();
             break;
+            
             /*Lucas*/
         case 'maison':
             maison();
@@ -95,6 +96,21 @@ if(isset($_GET["action"]) && !empty($_GET['action'])){
           break;
         case 'room_temp':
           room_temp();
+          break;
+        case 'house_remove':
+          house_remove();
+          break;
+        case 'house_add':
+          house_add();
+          break;
+        case 'house_fetch':
+          house_fetch();
+          break;
+        case 'house_edit':
+          house_edit();
+          break;
+        case 'favHouse':
+          favHouse();
           break;
         case 'thermometer':
           thermometer();

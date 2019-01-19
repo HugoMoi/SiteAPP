@@ -108,17 +108,34 @@
         $date12[]=$row['date'];
         $humite12[]=$row['humite'];
     }
- 
-    if($compteur!=0){
-    //Convertir les données temporelles au format JSON
-    $dayNow=json_encode($day);
+ //Convertir les données temporelles au format JSON
+    $dateNow=json_encode($dateNow);
     $date1=json_encode($date1);
     $date2=json_encode($date2);
+    $date3=json_encode($date3);
+    $date4=json_encode($date4);
+    $date5=json_encode($date5);
+    $date6=json_encode($date6);
+    $date7=json_encode($date7);
+    $date8=json_encode($date8);
+    $date9=json_encode($date9);
+    $date10=json_encode($date10);
+    $date11=json_encode($date11);
+    $date12=json_encode($date12);
     //Convertir les données d'humidité au format JSON
     $humiteNow=json_encode($humiteNow,JSON_NUMERIC_CHECK);
     $humite1=json_encode($humite1,JSON_NUMERIC_CHECK);
     $humite2=json_encode($humite2,JSON_NUMERIC_CHECK);
-
+    $humite3=json_encode($humite3,JSON_NUMERIC_CHECK);
+    $humite4=json_encode($humite4,JSON_NUMERIC_CHECK);
+    $humite5=json_encode($humite5,JSON_NUMERIC_CHECK);
+    $humite6=json_encode($humite6,JSON_NUMERIC_CHECK);
+    $humite7=json_encode($humite7,JSON_NUMERIC_CHECK);
+    $humite8=json_encode($humite8,JSON_NUMERIC_CHECK);
+    $humite9=json_encode($humite9,JSON_NUMERIC_CHECK);
+    $humite10=json_encode($humite10,JSON_NUMERIC_CHECK);
+    $humite11=json_encode($humite11,JSON_NUMERIC_CHECK);
+    $humite12=json_encode($humite12,JSON_NUMERIC_CHECK);
     $conn = null;
 }
 ?>
@@ -146,7 +163,7 @@ var chart = Highcharts.chart('container', {
         text: 'humidité'
     },
     xAxis: {
-        categories: <?php echo $dayNow;?>,
+        categories: <?php echo $dateNow;?>,
     },
     yAxis: {
         title: {

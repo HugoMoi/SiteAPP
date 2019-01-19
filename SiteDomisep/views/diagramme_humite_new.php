@@ -140,7 +140,7 @@
 }
 ?>
 
-<h2>click the button to change month</h2>
+
 <button id = "b1" class = "autocompare">1</button>
 <button id = "b2" class = "autocompare">2</button>
 <button id = "b3" class = "autocompare">3</button>
@@ -152,7 +152,8 @@
 <button id = "b9" class = "autocompare">9</button>
 <button id = "b10" class = "autocompare">10</button>
 <button id = "b11" class = "autocompare">11</button>
-<button id = "b12" class = "autocompare">12</button>
+<button id = "b12" class = "autocompare">12</button><br>
+    <p1>click the button to change month</p1>
 
 <script>
 var chart = Highcharts.chart('container', {

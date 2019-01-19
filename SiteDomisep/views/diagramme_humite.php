@@ -28,7 +28,7 @@
     if($compteur!=0){
     $day=json_encode($day);
     //print($day);
-    $pourcent=json_encode($pourcent,JSON_NUMERIC_CHECK);//后缀定义讲字串符转化为数字
+    $pourcent=json_encode($pourcent,JSON_NUMERIC_CHECK);
     //print($number);
     $conn = null;
 }

@@ -1,8 +1,7 @@
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>diagramme temperature</title>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>diagramme température</title>
 </head>
 <body>
 
@@ -11,94 +10,108 @@
 <script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-    
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
 <?php
     session_start();
-    $servername = "localhost"; 
+    $servername = "localhost";
     $username = "root"; 
     $password = ""; 
     $dbname = "espace_membre";
+
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+
     $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=YEAR(CURDATE()) AND MONTH(DATE)=MONTH(CURDATE()) AND id_client="'.$_SESSION['id'].'"');
     while($row=$result->fetch()){
         $dateNow[]=$row['date'];
-        $temperatureNow[]=$row['temperature'];
+        $tempNow[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(1) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=1 AND id_client="'.$_SESSION['id'].'"');
     while($row=$result->fetch()){
         $date1[]=$row['date'];
-        $temperature1[]=$row['temperature'];
+        $tempe1[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(2) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=2 AND id_client="'.$_SESSION['id'].'"');
     while($row=$result->fetch()){
         $date2[]=$row['date'];
-        $temperature2[]=$row['temperature'];
+        $temp2[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(3) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=3 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date3[]=$row['date'];
-        $temperature3[]=$row['temperature'];
+        $temp3[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(4) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=4 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date4[]=$row['date'];
-        $temperature4[]=$row['temperature'];
+        $temp4[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(5) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=5 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date5[]=$row['date'];
-        $temperature5[]=$row['temperature'];
+        $temp5[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(6) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=6 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date6[]=$row['date'];
-        $temperature6[]=$row['temperature'];
+        $temp6[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(7) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date7[]=$row['date'];
-        $temperature7[]=$row['temperature'];
+        $temp7[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(8) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date8[]=$row['date'];
-        $temperature8[]=$row['temperature'];
+        $temp8[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(9) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date9[]=$row['date'];
-        $temperature9[]=$row['temperature'];
+        $temp9[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(10) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date10[]=$row['date'];
-        $temperature10[]=$row['temperature'];
+        $temp10[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(11) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date11[]=$row['date'];
-        $temperature11[]=$row['temperature'];
+        $temp11[]=$row['temperature'];
     }
-    
-    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=(2019) AND MONTH(DATE)=MONTH(12) AND id_client="'.$_SESSION['id'].'"');
+
+    $result=$conn->query('SELECT date,temperature FROM dbStatistique WHERE YEAR(date)=2019 AND MONTH(DATE)=7 AND id_client="'.$_SESSION['id'].'"');
+
     while($row=$result->fetch()){
         $date12[]=$row['date'];
-        $temperature12[]=$row['temperature'];
+        $temp12[]=$row['temperature'];
     }
+
+    
+    //Convertir les données temporelles au format JSON
     $dateNow=json_encode($dateNow);
     $date1=json_encode($date1);
     $date2=json_encode($date2);
@@ -112,26 +125,25 @@
     $date10=json_encode($date10);
     $date11=json_encode($date11);
     $date12=json_encode($date12);
-    
-    $temperatureNow=json_encode($temperatureNow,JSON_NUMERIC_CHECK);
-    $temperature1=json_encode($temperature1,JSON_NUMERIC_CHECK);
-    $temperature2=json_encode($temperature2,JSON_NUMERIC_CHECK);
-    $temperature3=json_encode($temperature3,JSON_NUMERIC_CHECK);
-    $temperature4=json_encode($temperature4,JSON_NUMERIC_CHECK);
-    $temperature5=json_encode($temperature5,JSON_NUMERIC_CHECK);
-    $temperature6=json_encode($temperature6,JSON_NUMERIC_CHECK);
-    $temperature7=json_encode($temperature7,JSON_NUMERIC_CHECK);
-    $temperature8=json_encode($temperature8,JSON_NUMERIC_CHECK);
-    $temperature9=json_encode($temperature9,JSON_NUMERIC_CHECK);
-    $temperature10=json_encode($temperature10,JSON_NUMERIC_CHECK);
-    $temperature11=json_encode($temperature11,JSON_NUMERIC_CHECK);
-    $temperature12=json_encode($temperature12,JSON_NUMERIC_CHECK);
-    $conn = null;
+    //Convertir les données d'humidité au format JSON
+    $tempNow=json_encode($tempNow,JSON_NUMERIC_CHECK);
+    $temp1=json_encode($temp1,JSON_NUMERIC_CHECK);
+    $temp2=json_encode($temp2,JSON_NUMERIC_CHECK);
+    $temp3=json_encode($temp3,JSON_NUMERIC_CHECK);
+    $temp4=json_encode($tmep4,JSON_NUMERIC_CHECK);
+    $temp5=json_encode($temp5,JSON_NUMERIC_CHECK);
+    $temp6=json_encode($temp6,JSON_NUMERIC_CHECK);
+    $temp7=json_encode($temp7,JSON_NUMERIC_CHECK);
+    $temp8=json_encode($temp8,JSON_NUMERIC_CHECK);
+    $temp9=json_encode($temp9,JSON_NUMERIC_CHECK);
+    $temp10=json_encode($temp10,JSON_NUMERIC_CHECK);
+    $temp11=json_encode($temp11,JSON_NUMERIC_CHECK);
+    $temp12=json_encode($temp12,JSON_NUMERIC_CHECK);
 
+    $conn = null;
 ?>
 
 <div style="text-align:center;">
-<h2>click the button to change month</h2>
 <button id = "b1" class = "autocompare">1</button>
 <button id = "b2" class = "autocompare">2</button>
 <button id = "b3" class = "autocompare">3</button>
@@ -143,22 +155,27 @@
 <button id = "b9" class = "autocompare">9</button>
 <button id = "b10" class = "autocompare">10</button>
 <button id = "b11" class = "autocompare">11</button>
-<button id = "b12" class = "autocompare">12</button>
+<button id = "b12" class = "autocompare">12</button><br>
+    <p1>click the button to change month</p1>
 </div>
+
 <script>
 var chart = Highcharts.chart('container', {
     chart: {
-        type: 'column'
+        type: 'line'
     },
+
     title: {
         text: 'température'
     },
+
     xAxis: {
-        categories: <?php echo $dayNow;?>,
+        categories: <?php echo $dateNow; ?>,
     },
+
     yAxis: {
         title: {
-            text: '%'
+            text: '℃'
         },
         labels: {
             formatter: function () {
@@ -168,7 +185,7 @@ var chart = Highcharts.chart('container', {
     },
     tooltip: {
         split: true,
-        valueSuffix: '%'
+        valueSuffix: '℃'
     },
     plotOptions: {
         area: {
@@ -182,8 +199,8 @@ var chart = Highcharts.chart('container', {
         }
     },
     series: [{
-        data: <?php echo $temperatureNow; ?>,
-    }]
+        data: <?php echo $tempNow; ?>,
+        }]
 });
 
 $('#b1').click(function () {
@@ -192,7 +209,7 @@ $('#b1').click(function () {
         categories: <?php echo $date1; ?>,
     },
         series: [{
-            data: <?php echo $temperature1; ?>
+            data: <?php echo $temp1; ?>
         }]
     });
 });
@@ -204,7 +221,7 @@ $('#b2').click(function () {
         categories: <?php echo $date2; ?>,
     },
         series: [{
-            data: <?php echo $temperature2; ?>
+            data: <?php echo $temp2; ?>
         }]
     });
 });
@@ -215,7 +232,7 @@ $('#b3').click(function () {
         categories: <?php echo $date3; ?>,
     },
         series: [{
-            data: <?php echo $temperature3; ?>
+            data: <?php echo $temp3; ?>
         }]
     });
 });
@@ -226,7 +243,7 @@ $('#b4').click(function () {
         categories: <?php echo $date4; ?>,
     },
         series: [{
-            data: <?php echo $temperature4; ?>
+            data: <?php echo $temp4; ?>
         }]
     });
 });
@@ -237,7 +254,7 @@ $('#b5').click(function () {
         categories: <?php echo $date5; ?>,
     },
         series: [{
-            data: <?php echo $temperature5; ?>
+            data: <?php echo $temp5; ?>
         }]
     });
 });
@@ -248,7 +265,7 @@ $('#b6').click(function () {
         categories: <?php echo $date6; ?>,
     },
         series: [{
-            data: <?php echo $temperature6; ?>
+            data: <?php echo $temp6; ?>
         }]
     });
 });
@@ -259,7 +276,7 @@ $('#b7').click(function () {
         categories: <?php echo $date7; ?>,
     },
         series: [{
-            data: <?php echo $temperature7; ?>
+            data: <?php echo $temp7; ?>
         }]
     });
 });
@@ -270,7 +287,7 @@ $('#b8').click(function () {
         categories: <?php echo $date8; ?>,
     },
         series: [{
-            data: <?php echo $temperature8; ?>
+            data: <?php echo $temp8; ?>
         }]
     });
 });
@@ -281,7 +298,7 @@ $('#b9').click(function () {
         categories: <?php echo $date9; ?>,
     },
         series: [{
-            data: <?php echo $temperature9; ?>
+            data: <?php echo $temp9; ?>
         }]
     });
 });
@@ -292,7 +309,7 @@ $('#b10').click(function () {
         categories: <?php echo $date10; ?>,
     },
         series: [{
-            data: <?php echo $temperature10; ?>
+            data: <?php echo $temp10; ?>
         }]
     });
 });
@@ -303,7 +320,7 @@ $('#b11').click(function () {
         categories: <?php echo $date11; ?>,
     },
         series: [{
-            data: <?php echo $temperature11; ?>
+            data: <?php echo $temp11; ?>
         }]
     });
 });
@@ -311,13 +328,14 @@ $('#b11').click(function () {
 $('#b12').click(function () {
     chart.update({
         xAxis: {
-        categories: <?php echo $temperature12; ?>,
+        categories: <?php echo $date12; ?>,
     },
         series: [{
-            data: <?php echo $humite12; ?>
+            data: <?php echo $temp12; ?>
         }]
     });
 });
+
 </script>
 </body>
 </html>

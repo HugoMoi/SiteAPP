@@ -8,11 +8,12 @@ include("General.php");
    <head>
       <title>edit Profil</title>
       <meta charset="utf-8">
+        <link rel="stylesheet" href="design/EditerProfil.css" />
    </head>
    <body>
       
          <h2>Edition de mon profil</h2>
-         <div align="center">
+         <div class="boite" align="center">
             <form method="POST" action="" enctype="multipart/form-data">
 
                <table>

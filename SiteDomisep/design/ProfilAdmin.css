@@ -1,0 +1,40 @@
+h2{
+	text-align: center;
+}
+
+body {
+  width: 100%;
+  height: 400px;
+  background-image:url(../image/bedroom.jpg);
+  background-size:cover;    
+  background-repeat:no-repeat; 
+  background-attachment:fixed;
+}
+
+.boite{
+	margin-right: auto;
+	margin-left: auto;
+	width: 300px;
+	background-color: rgba(243, 243, 243, 0.6);
+	padding: 50px;
+}
+li{
+	list-style-type: none;
+}
+li a{
+	text-decoration: none;
+	color: black;
+}
+
+.delete{
+	color:red;
+}
+.delete:hover{
+	color: #850d17;
+}
+.confirm{
+	color: blue;
+}
+.confirm:hover{
+	color: #424458;
+}
